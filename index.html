@@ -7,16 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/CSS/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <header class="bg-teal-700 flex">
 
         <h1 #="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
 
-        <button #="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
+
+        <input type="button" #="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon">
-        </button>
+        </input>
 
     </header>
 
@@ -24,9 +25,9 @@
 
         <form class="search">
             
-            <input #="searchField">
+            <input type="search" #="searchField">
 
-            <button #="searchSubmitBtn"></button>
+            <input type="button" #="searchSubmitBtn"></input>
 
         </form>
 
@@ -80,11 +81,11 @@
 
             <form #="filtersForm">
 
-                <input class="filterDrop" #="filterDrop1">
+                <input type="text" class="filterDrop" #="filterDrop1">
 
-                <input class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" #="filterDrop2">
 
-                <input class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" #="filterDrop2">
 
             </form>
 
@@ -95,7 +96,7 @@
 
             </div>
 
-            <button #="filterApplyBtn"></button>
+            <input type="button" #="filterApplyBtn"></input>
 
         </side>
 
@@ -126,5 +127,5 @@
 
     </footer>
 
-    <script src="assets\JS\script.js"></script>
+    <script src="assets\js\script.js"></script>
 </body>
