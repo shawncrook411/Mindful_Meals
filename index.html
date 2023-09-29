@@ -6,8 +6,123 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/CSS/style.css">
 </head>
 <body>
-    <script src="assets\js\script.js"></script>
+    <header>
+
+        <h1 #="title"></h1>
+
+        <button #="userIcon"></button>
+
+    </header>
+
+    <nav>
+
+        <form class="search">
+            
+            <input #="searchField">
+
+            <button #="searchSubmitBtn"></button>
+
+        </form>
+
+        <section>
+
+            <div class="userData">
+
+                <h2 #="dailyCalories"></h2>
+
+            </div>
+
+            <div class="userData">
+
+                <h2 #="idealWeight"></h2>
+
+            </div>
+
+            <div class="userData">
+
+                <h2 #="macroNutrients"></h2>
+
+            </div>
+
+            <div class="userData">
+
+                <h2 #="PLACEHOLDER"></h2>
+
+            </div>
+
+            <div class="userData">
+
+                <h2 #="PLACEHOLDER"></h2>
+
+            </div>
+
+            <div class="userData">
+
+                <h2 #="PLACEHOLDER"></h2>
+
+            </div>
+
+        </section>
+
+    </nav>
+
+    <main>
+
+        <side class="filters">
+
+        <h3>Filters</h3>        
+
+            <form #="filtersForm">
+
+                <input class="filterDrop" #="filterDrop1">
+
+                <input class="filterDrop" #="filterDrop2">
+
+                <input class="filterDrop" #="filterDrop2">
+
+            </form>
+
+
+            <div class="filterListsContainer">
+
+                <ul #="filterList"></ul>
+
+            </div>
+
+            <button #="filterApplyBtn"></button>
+
+        </side>
+
+        <section class="resultsContainer">
+
+            <h3>Your Results!!!</h3>
+
+            <div class="results">
+
+                <ul #="resultsList"></ul>
+
+            </div>
+
+
+        </section>
+
+        <side class="favoritesContainer">
+
+            <h3>Your Favorites!!!</h3>
+
+            <ul #="favoritesList"></ul>
+
+        </side>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="assets\JS\script.js"></script>
 </body>
