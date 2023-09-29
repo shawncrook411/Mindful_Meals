@@ -6,7 +6,7 @@ This is an appliction oriented towards helping the user find healthy meals when 
 
 ## Badges
 
-![Static Badge](https://img.shields.io/badge/error%20404-Given%20UP%20%3BP-grey?labelColor=red&color=grey&link=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ)
+![Static Badge](https://img.shields.io/badge/error%20404-Given%20UP%20%3BP-grey?labelColor=red&color=grey)
 
 ## Visuals
 
@@ -14,7 +14,7 @@ PENDING
 
 ## Installation
 
-PENDING
+Please navigate to this webpage: https://shawncrook411.github.io/Mindful_Meals/
 
 ## Usage
 
@@ -54,7 +54,7 @@ We would like to site:
 
 and
 
-### 'https://api.edamam.com/api
+### https://api.edamam.com/api
 
 Thank you for allowing us to use your api and supplying such detailed documentaion
 
