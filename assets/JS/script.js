@@ -13,7 +13,7 @@ let activitylevel = "level_6";
 //weight = # in kg
 //activitylevel = [level_#] 1 - 7
 
-var getDiet = function (age, gender, height, weight, activitylevel) {
+var getDiet = function () {
 
     let localURL = DietURL + '?' + 'age=' + age + '&gender=' + gender + '&height=' + height + '&weight=' + weight + '&activitylevel=' + activitylevel
 
@@ -30,8 +30,10 @@ var getDiet = function (age, gender, height, weight, activitylevel) {
         return response.json();
         })
         .then(function (data) {
+        console.log("getDiet works")
         console.log(data)
         })
 }
 
-getDiet(age, gender, height, weight, activitylevel);
+getDiet();
+
