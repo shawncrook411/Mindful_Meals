@@ -35,5 +35,52 @@ var getDiet = function () {
         })
 }
 
-getDiet();
+// getDiet();
+
+var DefaultUser = {
+    age: '25',
+    gender: 'male',
+    height: '180',
+    weight: '72',
+    activitylevel: 'level_4', 
+}
+
+
+
+var getRecipe = function () {
+
+    
+    var queryValue = 'pasta'
+    var cuisineTypeLables = 'Italian'
+    var mealTypeLabels = 'Dinner'
+    var healthLabels = 'kosher'
+    var dietLabels = 'balanced'
+    var calories = 2000
+
+    var app_id = 'f21289d1'
+    var app_key = '1ae2a0e4c64ececf2fea98460046a101'
+
+    let localURL = 'https://api.edamam.com/api/recipes/v2?type=public&app_id=' + app_id + '&app_key=' + app_key + '&q=' + queryValue + '&calories=' + (calories-200) + '-' + (calories+200) + '&cuisinetype=' + cuisineTypeLables + '&mealType=' + mealTypeLabels + '&health=' + healthLabels + '&diet=' + dietLabels
+
+    fetch(localURL)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log("getRecipe works")
+        console.log(data)
+        })
+
+    // q - serachbar query
+    // calories / passed from other API
+    // cuisineType
+    // mealType
+    // health
+    // alcohol-free, dairy-free, fish-free (crustacean/mollusks and fish) , gluten-free, vegan , vegatarian, treenut-free, peanut-free, kosher, low-sugar
+    // diet
+}
+
+getRecipe();
+
+
 
