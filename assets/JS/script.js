@@ -7,6 +7,8 @@ let height = 175;
 let weight = 72;
 let activitylevel = "level_6";
 
+let calories = 2000
+
 //age = 0-80
 //gender = male / female
 //height = # in cm
@@ -32,10 +34,11 @@ var getDiet = function () {
         .then(function (data) {
         console.log("getDiet works")
         console.log(data)
+
+        calories = data.data.goals["maintain weight"]
+        
         })
 }
-
-// getDiet();
 
 var DefaultUser = {
     age: '25',
@@ -45,17 +48,14 @@ var DefaultUser = {
     activitylevel: 'level_4', 
 }
 
-
-
 var getRecipe = function () {
 
-    
     var queryValue = 'pasta'
     var cuisineTypeLables = 'Italian'
     var mealTypeLabels = 'Dinner'
     var healthLabels = 'kosher'
     var dietLabels = 'balanced'
-    var calories = 2000
+    
 
     var app_id = 'f21289d1'
     var app_key = '1ae2a0e4c64ececf2fea98460046a101'
@@ -68,9 +68,8 @@ var getRecipe = function () {
         })
         .then(function (data) {
         console.log("getRecipe works")
-        console.log(data)
+        console.log(data)        
         })
-
     // q - serachbar query
     // calories / passed from other API
     // cuisineType
@@ -81,6 +80,7 @@ var getRecipe = function () {
 }
 
 getRecipe();
+getDiet();
 
 
 
