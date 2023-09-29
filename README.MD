@@ -10,7 +10,7 @@ This is an appliction oriented towards helping the user find healthy meals when 
 
 ## Visuals
 
-PENDING
+PLACE HOLDER
 
 ## Installation
 
@@ -48,7 +48,7 @@ The authors for this project are:
 
 ### -Jared McMahon
 
-We would like to site:
+We would like to cite:
 
 ### https://fitness-calculator.p.rapidapi.com
 
@@ -56,7 +56,7 @@ and
 
 ### https://api.edamam.com/api
 
-Thank you for allowing us to use your api and supplying such detailed documentaion
+Thank you for allowing us to use your api and supplying such detailed documentation
 
 ## License
 
