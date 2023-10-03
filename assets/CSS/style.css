@@ -10,3 +10,8 @@ h1 {
 }
 
 /*icon image attribution: <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>  */
+
+nav {
+    font-family: "Lucida Handwriting", cursive;
+    font-size: 16pt;
+}
