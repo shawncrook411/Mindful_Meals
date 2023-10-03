@@ -12,12 +12,12 @@
 <body>
     <header class="bg-teal-700 flex">
 
-        <h1 #="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
+        <h1 id="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
 
 
-        <input type="button" #="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
+        <button id="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon">
-        </input>
+        </button>
 
 
     </header>
@@ -28,7 +28,7 @@
             
             <input type="search" #="searchField">
 
-            <input type="button" #="searchSubmitBtn"></input>
+            <button id="searchSubmitBtn"></button>
 
         </form>
 
@@ -36,37 +36,37 @@
 
             <div class="userData">
 
-                <h2 #="dailyCalories"></h2>
+                <h2 id="dailyCalories"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="idealWeight"></h2>
+                <h2 id="idealWeight"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="macroNutrients"></h2>
+                <h2 id="macroNutrients"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
@@ -80,24 +80,24 @@
 
         <h3>Filters</h3>        
 
-            <form #="filtersForm">
+            <form id="filtersForm">
 
-                <input type="text" class="filterDrop" #="filterDrop1">
+                <input type="text" class="filterDrop" id="filterDrop1">
 
-                <input type="text" class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" id="filterDrop2">
 
-                <input type="text" class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" id="filterDrop2">
 
             </form>
 
 
             <div class="filterListsContainer">
 
-                <ul #="filterList"></ul>
+                <ul id="filterList"></ul>
 
             </div>
 
-            <input type="button" #="filterApplyBtn"></input>
+            <button #="filterApplyBtn"></input>
 
         </side>
 
@@ -107,7 +107,7 @@
 
             <div class="results">
 
-                <ul #="resultsList"></ul>
+                <ul id="resultsList"></ul>
 
             </div>
 
@@ -118,7 +118,7 @@
 
             <h3>Your Favorites!!!</h3>
 
-            <ul #="favoritesList"></ul>
+            <ul id="favoritesList"></ul>
 
         </side>
 
