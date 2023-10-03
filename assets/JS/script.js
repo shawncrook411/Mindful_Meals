@@ -79,8 +79,73 @@ var getRecipe = function () {
     // diet
 }
 
-getRecipe();
-getDiet();
+var DisplayModal = function () {
+    
+    modal = document.createElement("section")
+    modal.setAttribute("class", "modal")
+    modal.setAttribute("id", "inputModal")
 
 
+    header = document.createElement("div")
+    header.setAttribute("class", "#")
+
+    inputDiv = document.createElement("div")
+    inputDiv.setAttribute("class", "#")
+
+    skipButton = document.createElement("button")
+    skipButton.setAttribute("class", "#")
+
+    nextButton = document.createElement("button")
+    nextButton.setAttribute("class", "#")
+
+    returnValueDiv = document.createElement("div")
+    returnValueDiv.setAttribute("class", "#")
+
+    returnList = document.createElement("ul")
+    returnValueDiv.appendChild(returnList)
+
+    let input = [];
+    let returnValue = [];
+
+    for (let i = 0; i < 6; i++)
+    {
+        input[i] = document.createElement("input")
+        input[i].setAttribute("class", "#")
+        inputDiv.appendChild(input[i])  
+    }
+
+    input[0].placeholder = "Name:"
+    input[1].placeholder = "Age: (0-80)"
+    input[2].placeholder = "Height: in cm"
+    input[3].placeholder = "Weight: in Kg"
+    input[4].placeholder = "Activity Level: 1-7"
+    input[5].placeholder = "Weight Loss Goal: "
+
+    for (let i = 0; i < 4; i++)
+    {
+        returnValue[i] = document.createElement("li")
+        returnValue[i].setAttribute("class", "#")       
+        returnList.appendChild(returnValue[i])
+    }
+
+    returnValue[0].textContent = "Recommended Daily Calories: "    
+    returnValue[1].textContent = "Protein:"
+    returnValue[2].textContent = "Fat: "
+    returnValue[3].textContent = "Carbohydrates: "   
+
+    modal.appendChild(header)
+    modal.appendChild(inputDiv)
+    modal.appendChild(skipButton)
+    modal.appendChild(nextButton)
+    modal.appendChild(returnValueDiv)
+
+    main = document.getElementById("main")
+    main.appendChild(modal)
+}
+
+
+// getRecipe();
+// getDiet();
+
+DisplayModal()
 
