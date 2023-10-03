@@ -54,8 +54,7 @@ var getRecipe = function () {
     var cuisineTypeLables = 'Italian'
     var mealTypeLabels = 'Dinner'
     var healthLabels = 'kosher'
-    var dietLabels = 'balanced'
-    
+    var dietLabels = 'balanced'   
 
     var app_id = 'f21289d1'
     var app_key = '1ae2a0e4c64ececf2fea98460046a101'
@@ -78,90 +77,79 @@ var getRecipe = function () {
     // alcohol-free, dairy-free, fish-free (crustacean/mollusks and fish) , gluten-free, vegan , vegatarian, treenut-free, peanut-free, kosher, low-sugar
     // diet
 }
-
-var DisplayModal = function () {
     
-    modal = document.createElement("section")
-    modal.setAttribute("class", "modal")
-    modal.setAttribute("id", "inputModal")
+modal = document.createElement("section")
+modal.setAttribute("class", "modal")
+modal.setAttribute("id", "inputModal")
 
+header = document.createElement("div")
+header.setAttribute("class", "#")
 
-    header = document.createElement("div")
-    header.setAttribute("class", "#")
+inputDiv = document.createElement("div")
+inputDiv.setAttribute("class", "#")
 
-    inputDiv = document.createElement("div")
-    inputDiv.setAttribute("class", "#")
+skipButton = document.createElement("button")
+skipButton.setAttribute("class", "#")
 
-    skipButton = document.createElement("button")
-    skipButton.setAttribute("class", "#")
+nextButton = document.createElement("button")
+nextButton.setAttribute("class", "#")
 
-    nextButton = document.createElement("button")
-    nextButton.setAttribute("class", "#")
+returnValueDiv = document.createElement("div")
+returnValueDiv.setAttribute("class", "#")
 
-    returnValueDiv = document.createElement("div")
-    returnValueDiv.setAttribute("class", "#")
+returnList = document.createElement("ul")
+returnValueDiv.appendChild(returnList)
 
-    returnList = document.createElement("ul")
-    returnValueDiv.appendChild(returnList)
+let input = [];
+let returnValue = [];
 
-    let input = [];
-    let returnValue = [];
-
-    for (let i = 0; i < 6; i++)
-    {
-        input[i] = document.createElement("input")
-        input[i].setAttribute("class", "#")
-        inputDiv.appendChild(input[i])  
-    }
-
-    input[0].placeholder = "Name:"
-    input[1].placeholder = "Age: (0-80)"
-    input[2].placeholder = "Height: in cm"
-    input[3].placeholder = "Weight: in Kg"
-    input[4].placeholder = "Activity Level: 1-7"
-    input[5].placeholder = "Weight Loss Goal: "
-
-    for (let i = 0; i < 4; i++)
-    {
-        returnValue[i] = document.createElement("li")
-        returnValue[i].setAttribute("class", "#")       
-        returnList.appendChild(returnValue[i])
-    }
-
-    returnValue[0].textContent = "Recommended Daily Calories: "    
-    returnValue[1].textContent = "Protein:"
-    returnValue[2].textContent = "Fat: "
-    returnValue[3].textContent = "Carbohydrates: "   
-
-    modal.appendChild(header)
-    modal.appendChild(inputDiv)
-    modal.appendChild(skipButton)
-    modal.appendChild(nextButton)
-    modal.appendChild(returnValueDiv)
-
-    main = document.getElementById("main")
-    main.appendChild(modal)
+for (let i = 0; i < 6; i++)
+{
+    input[i] = document.createElement("input")
+    input[i].setAttribute("class", "#")
+    inputDiv.appendChild(input[i])  
 }
 
+input[0].placeholder = "Name:"
+input[1].placeholder = "Age: (0-80)"
+input[2].placeholder = "Height: in cm"
+input[3].placeholder = "Weight: in Kg"
+input[4].placeholder = "Activity Level: 1-7"
+input[5].placeholder = "Weight Loss Goal: "
 
-// getRecipe();
-// getDiet();
+for (let i = 0; i < 4; i++)
+{
+    returnValue[i] = document.createElement("li")
+    returnValue[i].setAttribute("class", "#")       
+    returnList.appendChild(returnValue[i])
+}
 
-DisplayModal()
+returnValue[0].textContent = "Recommended Daily Calories: "    
+returnValue[1].textContent = "Protein:"
+returnValue[2].textContent = "Fat: "
+returnValue[3].textContent = "Carbohydrates: "   
 
+modal.appendChild(header)
+modal.appendChild(inputDiv)
+modal.appendChild(skipButton)
+modal.appendChild(nextButton)
+modal.appendChild(returnValueDiv)
+
+main = document.getElementById("main")
+main.appendChild(modal)
 
 document.addEventListener('DOMContentLoaded', function() {
-
+    
     const form = document.querySelector('form');
     const recipeResults = document.getElementById('resultsList');
-
+    
     function searchRecipes() {
         const userSearch = document.getElementById('searchField').value;
-
+        
         if (userSearch.trim() !== '') {
-
+            
             const recipeURL = `https://api.edamam.com/search?q=${userSearch}&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101`;
-
+            
             fetch(recipeURL)
             .then((response) => response.json())
             .then((data) => {
@@ -177,10 +165,12 @@ document.addEventListener('DOMContentLoaded', function() {
             recipeResults.innerHTML = '';
         }
     }
-
+    
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         searchRecipes();
-    });
-
+    });    
 });
+
+// getRecipe();
+// getDiet();
