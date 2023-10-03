@@ -1,6 +1,3 @@
-
-let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
-
 let age = 37; 
 let gender = "female";
 let height = 175;
@@ -17,7 +14,7 @@ var DefaultUser = {
 }
 
 var getDiet = function () {
-
+    let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
     let localURL = DietURL + '?' + 'age=' + age + '&gender=' + gender + '&height=' + height + '&weight=' + weight + '&activitylevel=' + activitylevel
 
     let options = {
@@ -81,8 +78,9 @@ header.setAttribute("class", "#")
 inputDiv = document.createElement("div")
 inputDiv.setAttribute("class", "#")
 
-skipButton = document.createElement("button")
-skipButton.setAttribute("class", "#")
+submitInfoButton = document.createElement("button")
+submitInfoButton.setAttribute("class", "#")
+submitInfoButton.textContent = "Submit"
 
 nextButton = document.createElement("button")
 nextButton.setAttribute("class", "#")
@@ -124,8 +122,7 @@ returnValue[3].textContent = "Carbohydrates: "
 
 modal.appendChild(header)
 modal.appendChild(inputDiv)
-modal.appendChild(skipButton)
-modal.appendChild(nextButton)
+modal.appendChild(submitInfoButton)
 modal.appendChild(returnValueDiv)
 
 main = document.getElementById("main")
