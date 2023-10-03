@@ -79,8 +79,38 @@ var getRecipe = function () {
     // diet
 }
 
-getRecipe();
-getDiet();
 
+document.addEventListener('DOMContentLoaded', function() {
 
+    const form = document.querySelector('form');
+    const recipeResults = document.getElementById('resultsList');
 
+    function searchRecipes() {
+        const userSearch = document.getElementById('searchField').value;
+
+        if (userSearch.trim() !== '') {
+
+            const recipeURL = `https://api.edamam.com/search?q=${userSearch}&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101`;
+
+            fetch(recipeURL)
+            .then((response) => response.json())
+            .then((data) => {
+                const recipes = data.hits;
+                recipes.forEach(recipe => {
+                    const li = document.createElement('li');
+                    li.innerText = recipe.recipe.label;
+                    recipeResults.appendChild(li);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+        } else {
+            recipeResults.innerHTML = '';
+        }
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        searchRecipes();
+    });
+
+});
