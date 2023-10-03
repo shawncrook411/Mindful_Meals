@@ -7,17 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <header class="bg-teal-700 flex">
 
-        <h1 #="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
+        <h1 id="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
 
 
-        <input type="button" #="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
+        <button id="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon">
-        </input>
+        </button>
 
 
     </header>
@@ -28,7 +32,9 @@
             
             <input type="search" id="searchField">
 
+
             <input type="button" id="searchSubmitBtn"></input>
+            
 
         </form>
 
@@ -36,37 +42,37 @@
 
             <div class="userData">
 
-                <h2 #="dailyCalories"></h2>
+                <h2 id="dailyCalories"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="idealWeight"></h2>
+                <h2 id="idealWeight"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="macroNutrients"></h2>
+                <h2 id="macroNutrients"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
             <div class="userData">
 
-                <h2 #="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER"></h2>
 
             </div>
 
@@ -74,30 +80,32 @@
 
     </nav>
 
-    <main>
+    <main id="main">
+
+        <p><a href="#inputModal" rel="modal:open">Open Modal</a></p>
 
         <side class="filters">
 
         <h3>Filters</h3>        
 
-            <form #="filtersForm">
+            <form id="filtersForm">
 
-                <input type="text" class="filterDrop" #="filterDrop1">
+                <input type="text" class="filterDrop" id="filterDrop1">
 
-                <input type="text" class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" id="filterDrop2">
 
-                <input type="text" class="filterDrop" #="filterDrop2">
+                <input type="text" class="filterDrop" id="filterDrop2">
 
             </form>
 
 
             <div class="filterListsContainer">
 
-                <ul #="filterList"></ul>
+                <ul id="filterList"></ul>
 
             </div>
 
-            <input type="button" #="filterApplyBtn"></input>
+            <button #="filterApplyBtn"></input>
 
         </side>
 
@@ -118,7 +126,7 @@
 
             <h3>Your Favorites!!!</h3>
 
-            <ul #="favoritesList"></ul>
+            <ul id="favoritesList"></ul>
 
         </side>
 
@@ -128,5 +136,10 @@
 
     </footer>
 
-    <script src="./assets/JS/script.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+
+    <script src="assets\js\script.js"></script>
+
 </body>
