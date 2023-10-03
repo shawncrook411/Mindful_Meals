@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header class="bg-teal-700 flex">
+    <header class="bg-teal-600 flex">
 
         <h1 id="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
 
@@ -74,34 +74,34 @@
 
     </nav>
 
-    <main>
+    <main class="bg-sky-600 columns-3">
 
-        <side class="filters bg-teal-700 rounded-lg">
+        <aside class="filters card grow flex-col basis-1/2 bg-teal-600 rounded-lg box-border w-1/2 min-h-full">
 
-        <h3>Filters</h3>        
+            <h3>Filters</h3>        
+            
+            <form id="filtersForm bg-teal-700 rounded-lg flex">
 
-            <form id="filtersForm">
+                <input type="text" class="filterDrop border border-dark" id="filterDrop1" placeholder="filter1">
 
-                <input type="text" class="filterDrop" id="filterDrop1">
+                <input type="text" class="filterDrop" id="filterDrop2" placeholder="filter2">
 
-                <input type="text" class="filterDrop" id="filterDrop2">
-
-                <input type="text" class="filterDrop" id="filterDrop2">
+                <input type="text" class="filterDrop" id="filterDrop2" placeholder="filter3">
 
             </form>
 
 
             <div class="filterListsContainer">
 
-                <ul id="filterList"></ul>
+                <ul id="filterList">selected filter</ul>
 
             </div>
 
-            <button #="filterApplyBtn"></input>
+            <button #="filterApplyBtn">Filter</input>
 
-        </side>
+        </aside>
 
-        <section class="resultsContainer">
+        <section class="resultsContainer card grow bg-teal-600 rounded-lg box-border w-1/2">
 
             <h3>Your Results!!!</h3>
 
@@ -114,13 +114,13 @@
 
         </section>
 
-        <side class="favoritesContainer">
+        <aside class="favoritesContainer card bg-teal-600 rounded-lg box-border">
 
             <h3>Your Favorites!!!</h3>
 
             <ul id="favoritesList"></ul>
 
-        </side>
+        </aside>
 
     </main>
 
