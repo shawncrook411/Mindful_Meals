@@ -17,5 +17,27 @@ h1 {
 
 nav {
     font-family: "Lucida Handwriting", cursive;
-    font-size: 16pt;
+    font-size: 14pt;
+
+}
+
+.userData:hover {
+    transition: all 1s ease-in-out;
+}
+
+#searchSubmitBtn{
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.userData{
+    background-color: rgb(51, 184, 173);
+    border-radius: 12px;
+    border-color: aquamarine;
+    border-width: 1px;
+    margin: 0px 5px 0px 5px;
+    transition: all 1s ease-in-out;
+}
+
+.userData h2{
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
 }
