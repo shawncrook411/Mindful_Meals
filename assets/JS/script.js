@@ -44,7 +44,6 @@ var getDiet = function () {
         })
 }
 
-
 var getRecipe = function () {
     
     var queryValue = 'pasta'
