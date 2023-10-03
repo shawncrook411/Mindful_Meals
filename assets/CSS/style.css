@@ -14,7 +14,7 @@ main {
 }
 
 aside {
-    height: ;
+    height: 100%;
 }
 
 .card {
@@ -33,4 +33,10 @@ aside {
 .container {
     padding: 2px 16px;
 }
+
+.blank {
+    border: black solid 5px;
+}
+
+
 /*icon image attribution: <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>  */
