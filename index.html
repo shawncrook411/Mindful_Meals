@@ -74,22 +74,26 @@
 
     </nav>
 
-    <main class="bg-sky-600 columns-3">
+    <main class="bg-sky-600 columns-3 flex space-x-4">
 
-        <aside class="filters card grow flex-col basis-1/2 bg-teal-600 rounded-lg box-border w-1/2 min-h-full">
-
-            <h3>Filters</h3>        
+        <aside class="filters flex grow flex-col basis-1/4 bg-gray-500 rounded-lg w-1/4 shadow-xl p-2 font-sans">
             
-            <form id="filtersForm bg-teal-700 rounded-lg flex">
+            <div class="rounded-lg flex space-y-4 bg-teal-600"></div>
+                
+                <h3 class="text-xl mb-4 font-bold text-center">Filter Search</h3>        
+            
+            
+                <form id="filtersForm rounded-lg flex space-y-4">
 
-                <input type="text" class="filterDrop border border-dark" id="filterDrop1" placeholder="filter1">
+                    <input type="text" class="filterDrop border border-dark m-2" id="filterDrop1" placeholder="filter1">
 
-                <input type="text" class="filterDrop" id="filterDrop2" placeholder="filter2">
+                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter2">
 
-                <input type="text" class="filterDrop" id="filterDrop2" placeholder="filter3">
+                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter3">
 
-            </form>
+                </form>
 
+            </div>
 
             <div class="filterListsContainer">
 
@@ -101,9 +105,9 @@
 
         </aside>
 
-        <section class="resultsContainer card grow bg-teal-600 rounded-lg box-border w-1/2">
+        <section class="resultsContainer grow bg-teal-600 rounded-lg box-border w-1/2 shadow-xl">
 
-            <h3>Your Results!!!</h3>
+            <h3 class="grow bg-teal-600 p-2">Your Results!!!</h3>
 
             <div class="results">
 
@@ -114,7 +118,7 @@
 
         </section>
 
-        <aside class="favoritesContainer card bg-teal-600 rounded-lg box-border">
+        <aside class="favoritesContainer bg-teal-600 rounded-lg box-border w-1/4 shadow-xl">
 
             <h3>Your Favorites!!!</h3>
 
@@ -124,8 +128,8 @@
 
     </main>
 
-    <footer>
-
+    <footer class="bg-sky-600">
+        credits
     </footer>
 
     <script src="assets\js\script.js"></script>
