@@ -1,12 +1,6 @@
-let age = 37; 
-let gender = "female";
-let height = 175;
-let weight = 72;
-let activitylevel = "level_6";
-let calories = 2000
-let goals = '';
-
 let Users = [];
+
+currentUser = 0 
 
 var DefaultUser = {
     userName: 'DefaultUser',
@@ -15,10 +9,11 @@ var DefaultUser = {
     height: '180', // cm
     weight: '72', // kg
     activitylevel: 'level_4',  // [level_#] 1 - 7
-    goals: ''
+    calories: 2000
 }
 
 Users.push(DefaultUser)
+Users.push(testUser)
 
 var getDiet = function (currentUser) {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
@@ -99,7 +94,7 @@ returnList = document.createElement("ul")
 returnList.setAttribute("id", "returnList")
 returnValueDiv.appendChild(returnList)
 
-for (let i = 0; i < 7; i++)
+for (let i = 0; i < 6; i++)
 {
     input[i] = document.createElement("input")
     input[i].setAttribute("class", "#")
@@ -167,9 +162,10 @@ var submitInfo = function (event) {
         errorParagraph.setAttribute("style", "display:visible") 
     }
 
-    testGender = input[6].value
+    testGender = input[5].value
+    testGender = testGender.toLowerCase()
     if (testGender === "male" || testGender === "female")
-    {localGender = testGender.toLowerCase()}
+    {localGender = testGender}
     else
     {
         if (testGender === "M" || testGender === "m")
@@ -191,7 +187,6 @@ var submitInfo = function (event) {
             height : localHeight, 
             weight : localWeight,
             activitylevel : localActivityLevel,
-            goals : input[5].value,
             gender: localGender
         }        
         
@@ -237,7 +232,7 @@ var refreshModal = function () {
     submitInfoButton.setAttribute("style", "display:visible") 
 
 
-    for (let i = 0; i < 7; i++)
+    for (let i = 0; i < 6; i++)
     {
         input[i].value = ''
     }    
@@ -248,8 +243,7 @@ var refreshModal = function () {
     input[2].placeholder = "Height: (130-230cm)"
     input[3].placeholder = "Weight: (40-160kg)"
     input[4].placeholder = "Activity Level: (1-6)"
-    input[5].placeholder = "Weight Loss Goal: "
-    input[6].placeholder = "Gender? Male/Female"
+    input[5].placeholder = "Gender? Male/Female"
     
     if (Users.length > 1)
     {
@@ -338,6 +332,40 @@ document.addEventListener('DOMContentLoaded', function() {
         searchRecipes()
     })
 })
+
+var changeUser = function () {
+
+}
+
+var openUser = function() {
+    userButtons = document.querySelectorAll(".user-button")
+    for (let i = 0; i < userButtons.length; i++)
+    {
+        userButtons[i].remove()
+    }
+
+    for(let i = 0; i < Users.length; i++)
+    {
+        let newButton = document.createElement("button")
+        newButton.setAttribute("id", Users[i].userName)
+        newButton.setAttribute("data-tag", i)
+        newButton.setAttribute("class", "user-button")
+        newButton.textContent = Users[i].userName
+        newButton.addEventListener("click", function(){
+            currentUser = newButton.getAttribute("data-tag")
+            console.log(currentUser)
+        })
+        userModal.appendChild(newButton)
+    }
+}
+
+userModal = document.getElementById("usersModal")
+userIcon = document.getElementById("userIcon")
+userIcon.addEventListener("click", openUser)
+
+
+
+
 
 
 // getRecipe();
