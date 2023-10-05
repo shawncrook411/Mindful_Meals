@@ -89,9 +89,6 @@ header.setAttribute("class", "#")
 inputDiv = document.createElement("form")
 inputDiv.setAttribute("class", "#")
 
-
-
-
 nextButton = document.createElement("button")
 nextButton.setAttribute("class", "#")
 
@@ -109,8 +106,6 @@ for (let i = 0; i < 6; i++)
     inputDiv.appendChild(input[i])  
 }
 
-
-
 modal.appendChild(header)
 modal.appendChild(inputDiv)
 
@@ -123,7 +118,11 @@ errorParagraph = document.createElement("p")
 errorParagraph.textContent = "You must fill in all the inputs!"
 errorParagraph.setAttribute("class", "error")
 
+submitInfoButton = document.createElement("button")
+submitInfoButton.setAttribute("class", "#")
+submitInfoButton.textContent = "Submit to create new User"
 
+inputDiv.appendChild(submitInfoButton)
 
 var submitInfo = function (event) {
 
@@ -166,7 +165,7 @@ var submitInfo = function (event) {
         returnValue[2].textContent = "Protein:"
         returnValue[3].textContent = "Fat: "
         returnValue[4].textContent = "Carbohydrates: "  
-        submitInfoButton.remove()
+        submitInfoButton.setAttribute("style", "display:none") 
 
         createAnotherButton = document.createElement("button")
         createAnotherButton.addEventListener("click", refreshModal)
@@ -181,7 +180,11 @@ var submitInfo = function (event) {
     }
 }
 
-var refreshModal = function () {     
+var refreshModal = function () {  
+    
+    submitInfoButton.addEventListener("click", submitInfo)
+    submitInfoButton.setAttribute("style", "display:visible") 
+
 
     for (let i = 0; i < 6; i++)
     {
@@ -196,12 +199,6 @@ var refreshModal = function () {
     input[4].placeholder = "Activity Level: 1-7"
     input[5].placeholder = "Weight Loss Goal: "
     
-    submitInfoButton = document.createElement("button")
-    submitInfoButton.setAttribute("class", "#")
-    submitInfoButton.textContent = "Submit to create new User"
-    submitInfoButton.addEventListener("click", submitInfo)
-    inputDiv.appendChild(submitInfoButton)
-
     if (Users.length > 1)
     {
         another = document.getElementById("createAnother")
@@ -212,8 +209,8 @@ var refreshModal = function () {
             returnValue[i].remove()    
         }
     }
-
 }
+
 openModal.addEventListener("click", refreshModal)
 
 document.addEventListener('DOMContentLoaded', function() {
