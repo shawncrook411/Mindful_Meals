@@ -213,38 +213,78 @@ var refreshModal = function () {
 
 openModal.addEventListener("click", refreshModal)
 
+// only executes when entire DOM is loaded
+
 document.addEventListener('DOMContentLoaded', function() {
     
+    // query selectors for the form, and for the results section
     const form = document.querySelector('form');
     const recipeResults = document.getElementById('resultsList')
     
+    // function to search the recipes
     function searchRecipes() {
+
+        // gets the users search input
         const userSearch = document.getElementById('searchField').value
         
+        // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
             
             const recipeURL = `https://api.edamam.com/search?q=${userSearch}&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101`
             
+            // fetch for the recipes
             fetch(recipeURL)
             .then((response) => response.json())
             .then((data) => {
+                
+                // creating variable for the returned recipes
                 const recipes = data.hits;
+
+                // for each recipe ...
                 recipes.forEach(recipe => {
-                    const li = document.createElement('li')
-                    li.innerText = recipe.recipe.label;
-                    recipeResults.appendChild(li);
+
+                    // creates the card for each individual recipe, and adds the card class
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    // adds the corresponding image for said recipe, as well as the name of the recipe
+                    const img = document.createElement('img');
+                    img.src = recipe.recipe.image;
+                    img.alt = recipe.recipe.label;
+
+                    // creates the h3 to put the name of the recipe in
+                    const heading = document.createElement('h3');
+                    heading.innerText = recipe.recipe.label;
+
+                    // adds the image and heading to the card created previously
+                    card.appendChild(img);
+                    card.appendChild(heading);
+
+                    // appends the recipe card to the recipe result section
+                    recipeResults.appendChild(card);
+
+                    // event listener for the cards, takes user to new tab with the corresponding recipe URL
+                    card.addEventListener('click', function() {
+                        const recipeURL = recipe.recipe.url;
+                        window.open(recipeURL, '_blank');
+                        console.log('card clicked');
+                    })
                 });
             })
+            // error handling, displays given error in console
             .catch(error => console.error("Error fetching data:", error))
         } else {
+            // empties the recipe section
             recipeResults.innerHTML = ''
         }
     }
     
+    // when the search is submitted, empty the recipe results section, and then run the searchRecipe function
     form.addEventListener('submit', function(event) {
         event.preventDefault()
+        recipeResults.innerHTML = '';
         searchRecipes()
-    })   
+    })
 })
 
 

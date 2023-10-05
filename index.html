@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <header class="bg-teal-700 flex">
+    <header class="bg-teal-600 flex">
 
         <h1 id="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
 
@@ -26,53 +26,51 @@
 
     </header>
 
-    <nav>
+    <nav class="flex flex-auto bg-teal-500 max-h-fit px-15 py-3 text-yellow-400">
 
-        <form class="search">
+        <form class="search flex flex-auto mr-20">
             
-            <input type="search" id="searchField">
+            <input class=" bg-teal-600 p-2  basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
 
-
-            <input type="button" id="searchSubmitBtn"></input>
-            
+            <button class="basis-1/3  max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
 
         </form>
 
-        <section>
+        <section class="flex flex-auto basis-2/3 align-middle text-center items-center">
 
-            <div class="userData">
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
 
-                <h2 id="dailyCalories"></h2>
-
-            </div>
-
-            <div class="userData">
-
-                <h2 id="idealWeight"></h2>
+                <h2 id="dailyCalories">1</h2>
 
             </div>
 
-            <div class="userData">
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
 
-                <h2 id="macroNutrients"></h2>
-
-            </div>
-
-            <div class="userData">
-
-                <h2 id="PLACEHOLDER"></h2>
+                <h2 id="idealWeight">2</h2>
 
             </div>
 
-            <div class="userData">
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
 
-                <h2 id="PLACEHOLDER"></h2>
+                <h2 id="macroNutrients">3</h2>
 
             </div>
 
-            <div class="userData">
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
 
-                <h2 id="PLACEHOLDER"></h2>
+                <h2 id="PLACEHOLDER1">4</h2>
+
+            </div>
+
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+
+                <h2 id="PLACEHOLDER2">5</h2>
+
+            </div>
+
+            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+
+                <h2 id="PLACEHOLDER3">6</h2>
 
             </div>
 
@@ -80,38 +78,48 @@
 
     </nav>
 
-    <main id="main">
 
+
+     
+
+    <main id="main" class="bg-sky-600 columns-3 flex space-x-4">
         <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p>
 
-        <side class="filters">
+        <aside class="filters flex grow flex-col basis-1/4 bg-gray-500 rounded-lg w-1/4 shadow-xl p-2 font-sans">
+            
 
-        <h3>Filters</h3>        
+            <div class="rounded-lg flex space-y-4 bg-teal-600"></div>
+                
+                <h3 class="text-xl mb-4 font-bold text-center">Filter Search</h3>   
+            
 
-            <form id="filtersForm">
+   
 
-                <input type="text" class="filterDrop" id="filterDrop1">
+                <form id="filtersForm rounded-lg flex space-y-4">
 
-                <input type="text" class="filterDrop" id="filterDrop2">
+                    <input type="text" class="filterDrop border border-dark m-2" id="filterDrop1" placeholder="filter1">
 
-                <input type="text" class="filterDrop" id="filterDrop2">
+                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter2">
 
-            </form>
+                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter3">
 
-
-            <div class="filterListsContainer">
-
-                <ul id="filterList"></ul>
+                </form>
 
             </div>
 
-            <button #="filterApplyBtn"></input>
+            <div class="filterListsContainer">
 
-        </side>
+                <ul id="filterList">selected filter</ul>
 
-        <section class="resultsContainer">
+            </div>
 
-            <h3>Your Results!!!</h3>
+            <button #="filterApplyBtn">Filter</input>
+
+        </aside>
+
+        <section class="resultsContainer grow bg-teal-600 rounded-lg box-border w-1/2 shadow-xl">
+
+            <h3 class="grow bg-teal-600 p-2">Your Results!!!</h3>
 
             <div class="results">
 
@@ -122,18 +130,18 @@
 
         </section>
 
-        <side class="favoritesContainer">
+        <aside class="favoritesContainer bg-teal-600 rounded-lg box-border w-1/4 shadow-xl">
 
             <h3>Your Favorites!!!</h3>
 
             <ul id="favoritesList"></ul>
 
-        </side>
+        </aside>
 
     </main>
 
-    <footer>
-
+    <footer class="bg-sky-600">
+        credits
     </footer>
 
     <script src="./assets/js/script.js"></script>
