@@ -20,9 +20,9 @@ var DefaultUser = {
 
 Users.push(DefaultUser)
 
-var getDiet = function () {
+var getDiet = function (currentUser) {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
-    let localURL = DietURL + '?' + 'age=' + age + '&gender=' + gender + '&height=' + height + '&weight=' + weight + '&activitylevel=' + activitylevel
+    let localURL = DietURL + '?' + 'age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + currentUser.activitylevel
 
     let options = {
         method: 'GET',
@@ -39,8 +39,8 @@ var getDiet = function () {
         .then(function (data) {
         console.log("getDiet works")
         console.log(data)
-
-        calories = data.data.goals["maintain weight"]        
+        calories = data.data.goals["maintain weight"]
+        return calories;        
         })
 }
 
@@ -99,7 +99,7 @@ returnList = document.createElement("ul")
 returnList.setAttribute("id", "returnList")
 returnValueDiv.appendChild(returnList)
 
-for (let i = 0; i < 6; i++)
+for (let i = 0; i < 7; i++)
 {
     input[i] = document.createElement("input")
     input[i].setAttribute("class", "#")
@@ -129,29 +129,78 @@ var submitInfo = function (event) {
     event.preventDefault()   
     errorParagraph.setAttribute("style", "display:none")
     inputDiv.appendChild(errorParagraph)    
-    
-    userName = input[0].value
-    age = input[1].value
-    height = input[2].value
-    weight = input[3].value
-    activitylevel = input[4].value    
-    goals = input[5].value
 
-    if (userName && age && height && weight && activitylevel && goals)
+    localUserName = input[0].value
+
+    if (input[1].value <= 80 && 0 < input[1].value)
+    {localAge = input[1].value}
+    else
+    {
+        errorParagraph.textContent = "You must fill input an age 1 - 80"
+        errorParagraph.setAttribute("style", "display:visible") 
+    }    
+
+    testHeight = Math.floor(input[2].value)
+    if (testHeight <= 230 && 130 <= testHeight)
+    {localHeight = testHeight}
+    else
+    {
+        errorParagraph.textContent = "Your height must be between 130-230cm"
+        errorParagraph.setAttribute("style", "display:visible") 
+    } 
+
+
+    testWeight = Math.floor(input[3].value)
+    if (testWeight <= 160 && 40 <= testWeight)
+    {localWeight = testWeight}
+    else
+    {
+        errorParagraph.textContent = "Your weight must be between 40-160kg"
+        errorParagraph.setAttribute("style", "display:visible") 
+    } 
+
+    if (input[4].value <= 7 && 0 < input[4].value)
+    {localActivityLevel = "level_" + input[4].value}
+    else
+    {
+        errorParagraph.textContent = "You must input an activity level 1-6"
+        errorParagraph.setAttribute("style", "display:visible") 
+    }
+
+    testGender = input[6].value
+    if (testGender === "male" || testGender === "female")
+    {localGender = testGender.toLowerCase()}
+    else
+    {
+        if (testGender === "M" || testGender === "m")
+        {
+            localGender = "male"
+        }
+        if (testGender === "F" || testGender === "f")
+        {
+            localGender = "female"
+        }
+    }
+
+    if (localUserName && localAge && localHeight && localWeight && localActivityLevel && localGender)
     {
         var newUser = 
         {
             userName : input[0].value,
-            age : input[1].value,
-            height : input[2].value, 
-            weight : input[3].value,
-            activitylevel : input[4].value,
-            goals : input[5].value
-        }
+            age : localAge,
+            height : localHeight, 
+            weight : localWeight,
+            activitylevel : localActivityLevel,
+            goals : input[5].value,
+            gender: localGender
+        }        
+        
+        let newUserCalorie = getDiet(newUser)
+        newUser.calories = newUserCalorie
         
         Users.push(newUser)
 
-        // getDiet()
+        console.log(Users)
 
         for (let i = 0; i < 5; i++)
         {
@@ -175,7 +224,8 @@ var submitInfo = function (event) {
     }
 
     else
-    {        
+    {   
+        errorParagraph.textContent = "You must fill in all the inputs!"     
         errorParagraph.setAttribute("style", "display:visible")           
     }
 }
@@ -187,7 +237,7 @@ var refreshModal = function () {
     submitInfoButton.setAttribute("style", "display:visible") 
 
 
-    for (let i = 0; i < 6; i++)
+    for (let i = 0; i < 7; i++)
     {
         input[i].value = ''
     }    
@@ -195,10 +245,11 @@ var refreshModal = function () {
     console.log(Users)
     input[0].placeholder = "Name:"
     input[1].placeholder = "Age: (0-80)"
-    input[2].placeholder = "Height: in cm"
-    input[3].placeholder = "Weight: in Kg"
-    input[4].placeholder = "Activity Level: 1-7"
+    input[2].placeholder = "Height: (130-230cm)"
+    input[3].placeholder = "Weight: (40-160kg)"
+    input[4].placeholder = "Activity Level: (1-6)"
     input[5].placeholder = "Weight Loss Goal: "
+    input[6].placeholder = "Gender? Male/Female"
     
     if (Users.length > 1)
     {
