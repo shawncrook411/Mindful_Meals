@@ -4,14 +4,21 @@ let height = 175;
 let weight = 72;
 let activitylevel = "level_6";
 let calories = 2000
+let goals = '';
+
+let Users = [];
 
 var DefaultUser = {
+    userName: 'DefaultUser',
     age: '25', // 0-80
     gender: 'male', // male / female
     height: '180', // cm
     weight: '72', // kg
     activitylevel: 'level_4',  // [level_#] 1 - 7
+    goals: ''
 }
+
+Users.push(DefaultUser)
 
 var getDiet = function () {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
@@ -36,7 +43,6 @@ var getDiet = function () {
         calories = data.data.goals["maintain weight"]        
         })
 }
-
 
 var getRecipe = function () {
     
@@ -68,6 +74,11 @@ var getRecipe = function () {
     // diet
 }
 
+let input = [];
+let returnValue = [];
+
+openModal = document.getElementById("openModal")
+
 modal = document.createElement("section")
 modal.setAttribute("class", "modal")
 modal.setAttribute("id", "inputModal")
@@ -75,12 +86,8 @@ modal.setAttribute("id", "inputModal")
 header = document.createElement("div")
 header.setAttribute("class", "#")
 
-inputDiv = document.createElement("div")
+inputDiv = document.createElement("form")
 inputDiv.setAttribute("class", "#")
-
-submitInfoButton = document.createElement("button")
-submitInfoButton.setAttribute("class", "#")
-submitInfoButton.textContent = "Submit"
 
 nextButton = document.createElement("button")
 nextButton.setAttribute("class", "#")
@@ -89,10 +96,8 @@ returnValueDiv = document.createElement("div")
 returnValueDiv.setAttribute("class", "#")
 
 returnList = document.createElement("ul")
+returnList.setAttribute("id", "returnList")
 returnValueDiv.appendChild(returnList)
-
-let input = [];
-let returnValue = [];
 
 for (let i = 0; i < 6; i++)
 {
@@ -101,35 +106,115 @@ for (let i = 0; i < 6; i++)
     inputDiv.appendChild(input[i])  
 }
 
-input[0].placeholder = "Name:"
-input[1].placeholder = "Age: (0-80)"
-input[2].placeholder = "Height: in cm"
-input[3].placeholder = "Weight: in Kg"
-input[4].placeholder = "Activity Level: 1-7"
-input[5].placeholder = "Weight Loss Goal: "
-
-for (let i = 0; i < 4; i++)
-{
-    returnValue[i] = document.createElement("li")
-    returnValue[i].setAttribute("class", "#")       
-    returnList.appendChild(returnValue[i])
-}
-
-returnValue[0].textContent = "Recommended Daily Calories: "    
-returnValue[1].textContent = "Protein:"
-returnValue[2].textContent = "Fat: "
-returnValue[3].textContent = "Carbohydrates: "   
-
 modal.appendChild(header)
 modal.appendChild(inputDiv)
-modal.appendChild(submitInfoButton)
+
 modal.appendChild(returnValueDiv)
 
 main = document.getElementById("main")
 main.appendChild(modal)
 
+errorParagraph = document.createElement("p")
+errorParagraph.textContent = "You must fill in all the inputs!"
+errorParagraph.setAttribute("class", "error")
+
+submitInfoButton = document.createElement("button")
+submitInfoButton.setAttribute("class", "#")
+submitInfoButton.textContent = "Submit to create new User"
+
+inputDiv.appendChild(submitInfoButton)
+
+var submitInfo = function (event) {
+
+    event.preventDefault()   
+    errorParagraph.setAttribute("style", "display:none")
+    inputDiv.appendChild(errorParagraph)    
+    
+    userName = input[0].value
+    age = input[1].value
+    height = input[2].value
+    weight = input[3].value
+    activitylevel = input[4].value    
+    goals = input[5].value
+
+    if (userName && age && height && weight && activitylevel && goals)
+    {
+        var newUser = 
+        {
+            userName : input[0].value,
+            age : input[1].value,
+            height : input[2].value, 
+            weight : input[3].value,
+            activitylevel : input[4].value,
+            goals : input[5].value
+        }
+        
+        Users.push(newUser)
+
+        // getDiet()
+
+        for (let i = 0; i < 5; i++)
+        {
+            returnValue[i] = document.createElement("li")
+            returnValue[i].setAttribute("class", "#")       
+            returnList.appendChild(returnValue[i])
+        }
+
+        returnValue[0].textContent = "New User Created! - " + newUser.userName 
+        returnValue[1].textContent = "Recommended Daily Calories: "    
+        returnValue[2].textContent = "Protein:"
+        returnValue[3].textContent = "Fat: "
+        returnValue[4].textContent = "Carbohydrates: "  
+        submitInfoButton.setAttribute("style", "display:none") 
+
+        createAnotherButton = document.createElement("button")
+        createAnotherButton.addEventListener("click", refreshModal)
+        createAnotherButton.textContent = "Create another user?"
+        createAnotherButton.setAttribute("id", "createAnother")
+        modal.appendChild(createAnotherButton)
+    }
+
+    else
+    {        
+        errorParagraph.setAttribute("style", "display:visible")           
+    }
+}
+
+var refreshModal = function () {  
+    
+    submitInfoButton.addEventListener("click", submitInfo)
+    submitInfoButton.setAttribute("style", "display:visible") 
+
+
+    for (let i = 0; i < 6; i++)
+    {
+        input[i].value = ''
+    }    
+   
+    console.log(Users)
+    input[0].placeholder = "Name:"
+    input[1].placeholder = "Age: (0-80)"
+    input[2].placeholder = "Height: in cm"
+    input[3].placeholder = "Weight: in Kg"
+    input[4].placeholder = "Activity Level: 1-7"
+    input[5].placeholder = "Weight Loss Goal: "
+    
+    if (Users.length > 1)
+    {
+        another = document.getElementById("createAnother")
+        another.remove()
+
+        for (let i = 0; i < 5; i++)
+        {
+            returnValue[i].remove()    
+        }
+    }
+}
+
+openModal.addEventListener("click", refreshModal)
 
 // only executes when entire DOM is loaded
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // query selectors for the form, and for the results section
