@@ -182,6 +182,7 @@ var submitInfo = function (event) {
 
 var refreshModal = function () {  
     
+    errorParagraph.setAttribute("style", "display:none") 
     submitInfoButton.addEventListener("click", submitInfo)
     submitInfoButton.setAttribute("style", "display:visible") 
 
