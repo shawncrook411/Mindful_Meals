@@ -6,7 +6,7 @@ This is an appliction oriented towards helping the user find healthy meals when 
 
 ## Badges
 
-![Static Badge](https://img.shields.io/badge/error%20404-Given%20UP%20%3BP-grey?labelColor=red&color=grey)
+![Static Badge](https://img.shields.io/badge/Still%20In-Progress%20%3BP-grey?labelColor=red&color=grey)
 
 ## Visuals
 
