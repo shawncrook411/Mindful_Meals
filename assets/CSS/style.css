@@ -14,13 +14,14 @@ main {
 }
 
 aside {
-    height: ;
+    height: 100%;
 }
 
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    max-width: 50%;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -66,4 +67,9 @@ nav {
 .userData h2{
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
     font-size: 20pt;
+}
+
+#resultsList {
+    display: flex;
+    flex-wrap: wrap;
 }

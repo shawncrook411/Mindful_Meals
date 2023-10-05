@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     heading.innerText = recipe.recipe.label;
 
                     // adds the image and heading to the card created previously
-                    card.appendChild(img);
                     card.appendChild(heading);
+                    card.appendChild(img);
 
                     // appends the recipe card to the recipe result section
                     recipeResults.appendChild(card);
