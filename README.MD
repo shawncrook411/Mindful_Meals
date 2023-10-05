@@ -10,7 +10,7 @@ This is an appliction oriented towards helping the user find healthy meals when 
 
 ## Visuals
 
-PLACE HOLDER
+![Alt text](./assets/images/current.PNG?raw=true "Current Release")
 
 ## Installation
 
@@ -26,7 +26,7 @@ In the very middle, the user will be shown all of the results for the search bas
 
 ## Support
 
-Please pick up a rotary phone and enter your mothers phone number. She will either console you as you cry because you can't figure out how to use such a simple application or you will be ridiculed because you are the failiure of the family.
+Due to time and financial constraints, this project will not have any link to support.
 
 ## Roadmap
 
@@ -52,9 +52,9 @@ We would like to cite:
 
 ### https://fitness-calculator.p.rapidapi.com
 
-and
-
 ### https://api.edamam.com/api
+
+### https://fontawesome.com
 
 Thank you for allowing us to use your api and supplying such detailed documentation
 
