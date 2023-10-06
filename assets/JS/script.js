@@ -233,22 +233,113 @@ var refreshModal = function () {
 
 openModal.addEventListener("click", refreshModal)
 
-// only executes when entire DOM is loaded
 
+
+// only executes when entire DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+   
+    // query selectors for the form, the results section, and the favorites
+        const form = document.querySelector('form');
+        const recipeResults = document.getElementById('resultsList')
+        let lastSearchedRecipes = [];
+        const favoritesList = document.getElementById('favoritesList')
     
-    // query selectors for the form, and for the results section
-    const form = document.querySelector('form');
-    const recipeResults = document.getElementById('resultsList')
+    // function to load favorite recipes, if there are any
+    function loadFavoriteRecipe() {
+            const favoriteRecipes = [];
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('favoriteRecipe')) {
+                    const recipeInfo = JSON.parse(localStorage.getItem(key));
+                    favoriteRecipes.push(recipeInfo);
+                }
+            }
+
+            displayFavorites(favoriteRecipes);
+        }
+    
+    // function to display favorited recipes
+    function displayFavorites(recipe) {
+
+            // does this for each recipe
+            recipe.forEach(recipe => {
+            // creates the card for each individual recipe, and adds the card class
+            const card = document.createElement('div');
+            card.classList.add('card');
+    
+    
+            // adds the corresponding image for said recipe, as well as the name of the recipe
+            const img = document.createElement('img');
+            img.src = recipe.image;
+            img.alt = recipe.label;
+    
+    
+            // creates the h3 to put the name of the recipe in
+            const heading = document.createElement('h3');
+            heading.innerText = recipe.label;
+    
+    
+            // creates icon for favorites
+            const heart = document.createElement('i');
+            heart.classList.add('sourceText', 'fa-solid', 'fa-heart');
+    
+            heading.appendChild(heart);
+    
+            // adds the image and heading to the card created previously
+            card.appendChild(heading);
+            card.appendChild(img);
+            
+    
+            // appends the recipe card to the recipe result section
+            favoritesList.appendChild(card);
+    
+            // event listener for the cards, takes user to new tab with the corresponding recipe URL
+            card.addEventListener('click', function() {
+                const recipeURL = recipe.url;
+                window.open(recipeURL, '_blank');
+            })
+    
+            // adds event listener to the heart, when clicked it saves the card to local storage
+            heart.addEventListener('click', function(event) {
+                event.stopPropagation();
+    
+                // saves the recipe data in a variable
+                const recipeData = {
+                    label: recipe.label,
+                    image: recipe.image,
+                    url: recipe.url
+                };
+    
+                // if clicked and heart isnt solid, it makes heart solid and saves info to local storage
+                if (heart.classList.contains('fa-regular')) {
+                    localStorage.setItem('favoriteRecipe' + recipe.url, JSON.stringify(recipeData));
+                    heart.classList.remove('fa-regular');
+                    heart.classList.add('fa-solid');
+    
+                // if clicked and heart is solid, it changes to the regular heart and removes info to local storage
+                } else if (heart.classList.contains('fa-solid')) {
+                    localStorage.removeItem('favoriteRecipe' + recipe.url, JSON.stringify(recipeData));
+                    heart.classList.remove('fa-solid');
+                    heart.classList.add('fa-regular');
+                }
+            })
+            })
+    }
+    
+        loadFavoriteRecipe();
+    
     
     // function to search the recipes
     function searchRecipes() {
-
+    
+    
         // gets the users search input
         const userSearch = document.getElementById('searchField').value
         
         // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
+                
           
             cuisineTypeLabels[0] = 'Italian'
             mealTypeLabels[0] = 'Dinner'
@@ -289,36 +380,75 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // creating variable for the returned recipes
                 const recipes = data.hits;
-
+                lastSearchedRecipes = recipes;
+    
                 // for each recipe ...
                 recipes.forEach(recipe => {
-
+    
+    
                     // creates the card for each individual recipe, and adds the card class
                     const card = document.createElement('div');
                     card.classList.add('card');
-
+    
+    
                     // adds the corresponding image for said recipe, as well as the name of the recipe
                     const img = document.createElement('img');
                     img.src = recipe.recipe.image;
                     img.alt = recipe.recipe.label;
-
+    
+    
                     // creates the h3 to put the name of the recipe in
                     const heading = document.createElement('h3');
                     heading.innerText = recipe.recipe.label;
-
+    
+    
+                    // creates icon for favorites
+                    const heart = document.createElement('i');
+                    heart.classList.add('sourceText', 'fa-regular', 'fa-heart');
+    
+                    heading.appendChild(heart);
+    
                     // adds the image and heading to the card created previously
-                    card.appendChild(img);
                     card.appendChild(heading);
-
+                    card.appendChild(img);
+                    
+    
                     // appends the recipe card to the recipe result section
                     recipeResults.appendChild(card);
-
+    
+    
                     // event listener for the cards, takes user to new tab with the corresponding recipe URL
                     card.addEventListener('click', function() {
                         const recipeURL = recipe.recipe.url;
                         window.open(recipeURL, '_blank');
-                        console.log('card clicked');
                     })
+    
+    
+                    // adds event listener to the heart, when clicked it saves the card to local storage
+                    heart.addEventListener('click', function(event) {
+                        event.stopPropagation();
+    
+                        // saves the recipe data in a variable
+                        const recipeData = {
+                            label: recipe.recipe.label,
+                            image: recipe.recipe.image,
+                            url: recipe.recipe.url
+                        };
+    
+                        // if clicked and heart isnt solid, it makes heart solid and saves info to local storage
+                        if (heart.classList.contains('fa-regular')) {
+                            localStorage.setItem('favoriteRecipe' + recipe.recipe.url, JSON.stringify(recipeData));
+                            heart.classList.remove('fa-regular');
+                            heart.classList.add('fa-solid');
+                        // if clicked and heart is solid, it changes to the regular heart and removes info to local storage
+                        } else if (heart.classList.contains('fa-solid')) {
+                            localStorage.removeItem('favoriteRecipe' + recipe.recipe.url, JSON.stringify(recipeData));
+                            heart.classList.remove('fa-solid');
+                            heart.classList.add('fa-regular');
+                        }
+                    })
+    
+    
                 });
             })
             // error handling, displays given error in console
@@ -335,6 +465,7 @@ document.addEventListener('DOMContentLoaded', function() {
         recipeResults.innerHTML = '';
         searchRecipes()
     })
+
 })
 
 var openUser = function() {
