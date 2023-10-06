@@ -1,12 +1,10 @@
-let age = 37; 
-let gender = "female";
-let height = 175;
-let weight = 72;
-let activitylevel = "level_6";
-let calories = 2000
-let goals = '';
-
 let Users = [];
+let cuisineTypeLabels = [];
+let mealTypeLabels = [];
+let healthLabels = [];
+let dietLabels = [];
+
+let currentUser = 0 
 
 var DefaultUser = {
     userName: 'DefaultUser',
@@ -15,7 +13,7 @@ var DefaultUser = {
     height: '180', // cm
     weight: '72', // kg
     activitylevel: 'level_4',  // [level_#] 1 - 7
-    goals: ''
+    calories: 2000
 }
 
 Users.push(DefaultUser)
@@ -44,35 +42,6 @@ var getDiet = function (currentUser) {
         })
 }
 
-var getRecipe = function () {
-    
-    var queryValue = 'pasta'
-    var cuisineTypeLables = 'Italian'
-    var mealTypeLabels = 'Dinner'
-    var healthLabels = 'kosher'
-    var dietLabels = 'balanced'   
-    
-    var app_id = 'f21289d1'
-    var app_key = '1ae2a0e4c64ececf2fea98460046a101'
-    
-    let localURL = 'https://api.edamam.com/api/recipes/v2?type=public&app_id=' + app_id + '&app_key=' + app_key + '&q=' + queryValue + '&calories=' + (calories-200) + '-' + (calories+200) + '&cuisinetype=' + cuisineTypeLables + '&mealType=' + mealTypeLabels + '&health=' + healthLabels + '&diet=' + dietLabels
-    
-    fetch(localURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log("getRecipe works")
-        console.log(data)        
-    })
-    // q - serachbar query
-    // calories / passed from other API
-    // cuisineType
-    // mealType
-    // health
-    // alcohol-free, dairy-free, fish-free (crustacean/mollusks and fish) , gluten-free, vegan , vegatarian, treenut-free, peanut-free, kosher, low-sugar
-    // diet
-}
 
 let input = [];
 let returnValue = [];
@@ -99,7 +68,7 @@ returnList = document.createElement("ul")
 returnList.setAttribute("id", "returnList")
 returnValueDiv.appendChild(returnList)
 
-for (let i = 0; i < 7; i++)
+for (let i = 0; i < 6; i++)
 {
     input[i] = document.createElement("input")
     input[i].setAttribute("class", "#")
@@ -167,9 +136,10 @@ var submitInfo = function (event) {
         errorParagraph.setAttribute("style", "display:visible") 
     }
 
-    testGender = input[6].value
+    testGender = input[5].value
+    testGender = testGender.toLowerCase()
     if (testGender === "male" || testGender === "female")
-    {localGender = testGender.toLowerCase()}
+    {localGender = testGender}
     else
     {
         if (testGender === "M" || testGender === "m")
@@ -191,7 +161,6 @@ var submitInfo = function (event) {
             height : localHeight, 
             weight : localWeight,
             activitylevel : localActivityLevel,
-            goals : input[5].value,
             gender: localGender
         }        
         
@@ -237,7 +206,7 @@ var refreshModal = function () {
     submitInfoButton.setAttribute("style", "display:visible") 
 
 
-    for (let i = 0; i < 7; i++)
+    for (let i = 0; i < 6; i++)
     {
         input[i].value = ''
     }    
@@ -248,8 +217,7 @@ var refreshModal = function () {
     input[2].placeholder = "Height: (130-230cm)"
     input[3].placeholder = "Weight: (40-160kg)"
     input[4].placeholder = "Activity Level: (1-6)"
-    input[5].placeholder = "Weight Loss Goal: "
-    input[6].placeholder = "Gender? Male/Female"
+    input[5].placeholder = "Gender? Male/Female"
     
     if (Users.length > 1)
     {
@@ -371,9 +339,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
-    
-            const recipeURL = `https://api.edamam.com/search?q=${userSearch}&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101`
-            
+                
+          
+            cuisineTypeLabels[0] = 'Italian'
+            mealTypeLabels[0] = 'Dinner'
+            healthLabels[0] = 'kosher'
+            dietLabels[0] = 'balanced' 
+
+            var recipeURL = 'https://api.edamam.com/search?&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101&q='+ userSearch
+
+            if (Users[currentUser].calories !== '')
+            {
+                recipeURL = recipeURL + '&calories=' + (Users[currentUser].calories - 200) + '-' + (Users[currentUser].calories + 200)
+            }
+            if (cuisineTypeLabels !== '')
+            {
+                for(let i = 0; i < cuisineTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels[i]} 
+            }
+            if (mealTypeLabels !== '')
+            {
+                for(let i = 0; i < mealTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&mealType=' + mealTypeLabels} 
+            }
+            if (healthLabels !== '')
+            {
+                for(let i = 0; i < healthLabels.length; i++)
+                {recipeURL = recipeURL + '&health=' + healthLabels}
+            }
+            if (dietLabels !== '')
+            {
+                for(let i = 0; i < dietLabels.length; i++)
+                {recipeURL = recipeURL + '&diet=' + dietLabels}
+            }
+
             // fetch for the recipes
             fetch(recipeURL)
             .then((response) => response.json())
@@ -466,7 +465,31 @@ document.addEventListener('DOMContentLoaded', function() {
         recipeResults.innerHTML = '';
         searchRecipes()
     })
-    })
 
-// getRecipe();
-// getDiet();
+})
+
+var openUser = function() {
+    userButtons = document.querySelectorAll(".user-button")
+    for (let i = 0; i < userButtons.length; i++)
+    {
+        userButtons[i].remove()
+    }
+
+    for(let i = 0; i < Users.length; i++)
+    {
+        let newButton = document.createElement("button")
+        newButton.setAttribute("id", Users[i].userName)
+        newButton.setAttribute("data-tag", i)
+        newButton.setAttribute("class", "user-button")
+        newButton.textContent = Users[i].userName
+        newButton.addEventListener("click", function(){
+            currentUser = newButton.getAttribute("data-tag")
+            console.log(currentUser)
+        })
+        userModal.appendChild(newButton)
+    }
+}
+
+userModal = document.getElementById("usersModal")
+userIcon = document.getElementById("userIcon")
+userIcon.addEventListener("click", openUser)
