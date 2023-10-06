@@ -15,10 +15,9 @@
 </head>
 
 <body>
-    <header class="bg-teal-600 flex">
+    <header class="bg-teal-700 flex">
 
-        <h1 id="title" class="text-yellow-400 flex pl-4">Mindful Meals</h1>
-
+        <h1 id="title" class="text-yellow-400 pl-4">Mindful Meals</h1>
 
         <button id="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <a href="#usersModal" rel="modal:open"><img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon"></a>
@@ -30,11 +29,11 @@
 
     </header>
 
-    <nav class="flex flex-auto bg-teal-500 max-h-fit px-15 py-3 text-yellow-400">
+    <nav class="flex flex-auto bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
 
         <form class="search flex flex-auto mr-20">
             
-            <input class=" bg-teal-600 p-2  basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
+            <input class=" bg-teal-600 p-2 basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
 
             <button class="basis-1/3  max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
 
@@ -42,39 +41,39 @@
 
         <section class="flex flex-auto basis-2/3 align-middle text-center items-center">
 
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+            <div class="userData card:hover basis-1/6 basis-1/5 bg-teal-600">
 
-                <h2 id="dailyCalories">1</h2>
-
-            </div>
-
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
-
-                <h2 id="idealWeight">2</h2>
+                <h3 id="dailyCalories">Calories:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
 
-                <h2 id="macroNutrients">3</h2>
-
-            </div>
-
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
-
-                <h2 id="PLACEHOLDER1">4</h2>
+                <h3 id="idealWeight">Goal Weight:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
 
-                <h2 id="PLACEHOLDER2">5</h2>
+                <h3 id="macroNutrients">Protein:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 hover:basis-1/5 bg-teal-600">
+            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
 
-                <h2 id="PLACEHOLDER3">6</h2>
+                <h3 id="PLACEHOLDER1">Carbs:</h3>
+
+            </div>
+
+            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+
+                <h3 id="PLACEHOLDER2">Fat:</h3>
+
+            </div>
+
+            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+
+                <h3 id="PLACEHOLDER3">6</h3>
 
             </div>
 
@@ -84,17 +83,38 @@
 
      
 
-    <main id="main" class="bg-sky-600 columns-3 flex space-x-4">
-        <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p>
+    <main id="main" class="bg-zinc-400  columns-3 flex space-x-4">
+        <!-- <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p> -->
 
-        <aside class="filters flex grow flex-col basis-1/4 bg-gray-500 rounded-lg w-1/4 shadow-xl p-2 font-sans">
+        <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2">
             
 
             <div class="rounded-lg flex space-y-4 bg-teal-600"></div>
                 
-                <h3 class="text-xl mb-4 font-bold text-center">Filter Search</h3>      
+                <h2 class="text-xl mb-4 font-bold text-center">Filter Search</h2>      
 
-   
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                  </svg>
+                </button>
+                
+                <!-- Dropdown menu -->
+                <div id="dropdown" class="hidden bg-white divide-gray-100 rounded-lg shadow w-44">
+                    <ul class="text-sm text-gray-700">
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                      </li>
+                    </ul>
+                </div>
 
                 <form id="filtersForm rounded-lg flex space-y-4">
 
@@ -118,9 +138,9 @@
 
         </aside>
 
-        <section class="resultsContainer grow bg-teal-600 rounded-lg box-border w-1/2 shadow-xl">
+        <section class="resultsContainer mt-4 bg-teal-600 rounded-lg box-border basis-3/5 shadow-xl text-xl">
 
-            <h3 class="grow bg-teal-600 p-2">Your Results!!!</h3>
+            <h2 class="bg-teal-600 rounded-lg p-2 font-bold text-center">Your Results!!!</h2>
 
             <div class="results">
 
@@ -131,9 +151,9 @@
 
         </section>
 
-        <aside class="favoritesContainer bg-teal-600 rounded-lg box-border w-1/4 shadow-xl">
+        <aside class="favoritesContainer text-xl mt-4 mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
 
-            <h3>Your Favorites!!!</h3>
+            <h2 class="p-2 underline text-center font-bold underline-offset-4">Favorite Meals</h2>
 
             <ul id="favoritesList"></ul>
 
@@ -141,9 +161,7 @@
 
     </main>
 
-    <footer class="bg-sky-600">
-        credits
-    </footer>
+    <footer class="bg-zinc-400"></footer>
 
     <script src="./assets/js/script.js"></script>
 
