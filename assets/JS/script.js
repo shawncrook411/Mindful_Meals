@@ -1,6 +1,10 @@
 let Users = [];
+let cuisineTypeLabels = [];
+let mealTypeLabels = [];
+let healthLabels = [];
+let dietLabels = [];
 
-currentUser = 0 
+let currentUser = 0 
 
 var DefaultUser = {
     userName: 'DefaultUser',
@@ -13,7 +17,6 @@ var DefaultUser = {
 }
 
 Users.push(DefaultUser)
-Users.push(testUser)
 
 var getDiet = function (currentUser) {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
@@ -39,35 +42,6 @@ var getDiet = function (currentUser) {
         })
 }
 
-var getRecipe = function () {
-    
-    var queryValue = 'pasta'
-    var cuisineTypeLables = 'Italian'
-    var mealTypeLabels = 'Dinner'
-    var healthLabels = 'kosher'
-    var dietLabels = 'balanced'   
-    
-    var app_id = 'f21289d1'
-    var app_key = '1ae2a0e4c64ececf2fea98460046a101'
-    
-    let localURL = 'https://api.edamam.com/api/recipes/v2?type=public&app_id=' + app_id + '&app_key=' + app_key + '&q=' + queryValue + '&calories=' + (calories-200) + '-' + (calories+200) + '&cuisinetype=' + cuisineTypeLables + '&mealType=' + mealTypeLabels + '&health=' + healthLabels + '&diet=' + dietLabels
-    
-    fetch(localURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log("getRecipe works")
-        console.log(data)        
-    })
-    // q - serachbar query
-    // calories / passed from other API
-    // cuisineType
-    // mealType
-    // health
-    // alcohol-free, dairy-free, fish-free (crustacean/mollusks and fish) , gluten-free, vegan , vegatarian, treenut-free, peanut-free, kosher, low-sugar
-    // diet
-}
 
 let input = [];
 let returnValue = [];
@@ -275,9 +249,39 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
-            
-            const recipeURL = `https://api.edamam.com/search?q=${userSearch}&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101`
-            
+          
+            cuisineTypeLabels[0] = 'Italian'
+            mealTypeLabels[0] = 'Dinner'
+            healthLabels[0] = 'kosher'
+            dietLabels[0] = 'balanced' 
+
+            var recipeURL = 'https://api.edamam.com/search?&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101&q='+ userSearch
+
+            if (Users[currentUser].calories !== '')
+            {
+                recipeURL = recipeURL + '&calories=' + (Users[currentUser].calories - 200) + '-' + (Users[currentUser].calories + 200)
+            }
+            if (cuisineTypeLabels !== '')
+            {
+                for(let i = 0; i < cuisineTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels[i]} 
+            }
+            if (mealTypeLabels !== '')
+            {
+                for(let i = 0; i < mealTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&mealType=' + mealTypeLabels} 
+            }
+            if (healthLabels !== '')
+            {
+                for(let i = 0; i < healthLabels.length; i++)
+                {recipeURL = recipeURL + '&health=' + healthLabels}
+            }
+            if (dietLabels !== '')
+            {
+                for(let i = 0; i < dietLabels.length; i++)
+                {recipeURL = recipeURL + '&diet=' + dietLabels}
+            }
+
             // fetch for the recipes
             fetch(recipeURL)
             .then((response) => response.json())
@@ -333,10 +337,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
-var changeUser = function () {
-
-}
-
 var openUser = function() {
     userButtons = document.querySelectorAll(".user-button")
     for (let i = 0; i < userButtons.length; i++)
@@ -362,11 +362,3 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
-
-
-
-
-
-
-// getRecipe();
-// getDiet();
