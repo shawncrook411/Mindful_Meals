@@ -446,8 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             heart.classList.remove('fa-solid');
                             heart.classList.add('fa-regular');
                         }
-                    })
-    
+                    })   
     
                 });
             })
