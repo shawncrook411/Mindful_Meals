@@ -261,6 +261,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // function to display favorited recipes
     function displayFavorites(recipe) {
+            // clears the list before reloading the favorites
+            favoritesList.innerHTML = '';
+
+            // function to find the favorited card in the search results
+            function findSearchResultCard(recipeURL) {
+                const searchResultCards = document.querySelectorAll('.card');
+                for (const card of searchResultCards) {
+                    const cardRecipeURL = card.querySelector('a').getAttribute('href');
+                    if (cardRecipeURL === recipeURL) {
+                        return card;
+                    }
+                }
+                return null;
+            }
 
             // does this for each recipe
             recipe.forEach(recipe => {
@@ -303,6 +317,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // adds event listener to the heart, when clicked it saves the card to local storage
             heart.addEventListener('click', function(event) {
                 event.stopPropagation();
+
+                favoritesList.removeChild(card);
     
                 // saves the recipe data in a variable
                 const recipeData = {
@@ -310,6 +326,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     image: recipe.image,
                     url: recipe.url
                 };
+
+                // adds a variable to the corresponding recipe in the search results, so the heart can be removed from that one as well
+                const searchResultCard = findSearchResultCard(recipe.url);
+                if(searchResultCard) {
+                    const searchResultHeart = searchResultCard.querySelector('.fa-heart');
+                    if (searchResultHeart) {
+                        searchResultHeart.classList.add('fa-regular');
+                        searchResultHeart.classList.remove('fa-solid');
+                    }
+                }
     
                 // if clicked and heart isnt solid, it makes heart solid and saves info to local storage
                 if (heart.classList.contains('fa-regular')) {
@@ -446,8 +472,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             heart.classList.remove('fa-solid');
                             heart.classList.add('fa-regular');
                         }
+
+                        loadFavoriteRecipe();
                     })
-    
     
                 });
             })
