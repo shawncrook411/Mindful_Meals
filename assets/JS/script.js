@@ -71,7 +71,7 @@ returnValueDiv.appendChild(returnList)
 for (let i = 0; i < 6; i++)
 {
     input[i] = document.createElement("input")
-    input[i].setAttribute("class", "#")
+    input[i].setAttribute("class", "# modalInput")
     inputDiv.appendChild(input[i])  
 }
 
@@ -85,10 +85,10 @@ main.appendChild(modal)
 
 errorParagraph = document.createElement("p")
 errorParagraph.textContent = "You must fill in all the inputs!"
-errorParagraph.setAttribute("class", "error")
+errorParagraph.setAttribute("class", "error errorMessage")
 
 submitInfoButton = document.createElement("button")
-submitInfoButton.setAttribute("class", "#")
+submitInfoButton.setAttribute("class", "# ")
 submitInfoButton.textContent = "Submit to create new User"
 
 inputDiv.appendChild(submitInfoButton)

@@ -42,7 +42,26 @@ aside {
     border: black solid 5px;
 }
 
+.modal {
+    background-color: #0f766e;
+    font-size: large;
+    font-weight: 500;
+    
+}
 
+.modalInput {
+    background-color: #0d9488;
+}
+
+.modalSubmit {
+    background-color: #0f766e;
+}
+
+.errorMessage {
+    color: red;
+    font-weight: 200;
+    font-style: italic;
+}
 /*icon image attribution: <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>  */
 
 nav {
