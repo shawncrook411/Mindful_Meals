@@ -13,7 +13,6 @@ var DefaultUser = {
 }
 
 Users.push(DefaultUser)
-Users.push(testUser)
 
 var getDiet = function (currentUser) {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
@@ -362,11 +361,6 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
-
-
-
-
-
 
 // getRecipe();
 // getDiet();
