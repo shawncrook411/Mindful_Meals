@@ -39,7 +39,7 @@
 
         </form>
 
-        <section class="flex flex-auto basis-2/3 align-middle text-center items-center">
+        <section class="flex flex-auto basis-2/3 align-middle justify-end text-center items-center">
 
             <div class="userData card:hover basis-1/6 basis-1/5 bg-teal-600">
 
@@ -71,12 +71,6 @@
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
-
-                <h3 id="PLACEHOLDER3">6</h3>
-
-            </div>
-
         </section>
 
     </nav>
@@ -84,6 +78,7 @@
      
 
     <main id="main" class="bg-zinc-400  columns-3 flex space-x-4">
+
         <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p>
 
         <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2">
@@ -93,38 +88,144 @@
                 
                 <h2 class="text-xl mb-4 font-bold text-center">Filter Search</h2>      
 
-                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                  </svg>
-                </button>
-                
-                <!-- Dropdown menu -->
-                <div id="dropdown" class="hidden bg-white divide-gray-100 rounded-lg shadow w-44">
-                    <ul class="text-sm text-gray-700">
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                      </li>
-                    </ul>
+                <div id="mealFilterContainer">
+                    <button id="filterDropMeal" data-dropdown-toggle="dropdown" class="text-white text-yellow-400 text-lg hover:bg-teal-800 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Meal Type<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="bg-white shadow w-44 hidden">
+                        <ul class="text-sm text-black">
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Breakfast</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Brunch</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Lunch/Dinner</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Snack</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Tea Time</a>
+                        </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <form id="filtersForm rounded-lg flex space-y-4">
+                <div id="cuisineFilterContainer">
+                    <button id="filterDropCuisine" data-dropdown-toggle="dropdown" class="text-white text-yellow-400 text-lg hover:bg-teal-800 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Cuisine Type<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="bg-white shadow w-44 hidden">
+                        <ul class="text-sm text-black">
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">American</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Asian</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">British</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Chinese</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">French</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Indian</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Japanese</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Kosher</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Mexican</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Middle Eastern</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
 
-                    <input type="text" class="filterDrop border border-dark m-2" id="filterDrop1" placeholder="filter1">
+                <div id="dietFilterContainer">
+                    <button id="filterDropDiet" data-dropdown-toggle="dropdown" class="text-white text-yellow-400 text-lg hover:bg-teal-800 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Diet Type<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="bg-white shadow w-44">
+                        <ul class="text-sm text-black hidden">
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Balanced</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">High-Fiber</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">High-Protein</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Low-Carb</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Low-Sodium</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
 
-                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter2">
-
-                    <input type="text" class="filterDrop m-2" id="filterDrop2" placeholder="filter3">
-
-                </form>
+                <div id="healthFilterContainer">
+                    <button id="filterDropHealth" data-dropdown-toggle="dropdown" class="text-white text-yellow-400 text-lg hover:bg-teal-800 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Special Requirements<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="bg-white shadow w-44">
+                        <ul class="text-sm text-black hidden">
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Alcohol-Free</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Dairy-Free</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Fish-Free</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Gluten-Free</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Kosher</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Low-Sugar</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Vegan</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Vegetarian</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Peanut-Free</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
 
