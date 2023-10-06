@@ -29,43 +29,44 @@
 
     </header>
 
-    <nav class="flex flex-auto bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
+    <nav class="flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
 
-        <form class="search flex flex-auto mr-20">
+        <form class="search flex flex-auto h-14">
             
             <input class=" bg-teal-600 p-2 basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
 
-            <button class="basis-1/3  max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
+            <button class="basis-1/3 max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
 
         </form>
 
-        <section class="flex flex-auto basis-2/3 align-middle justify-end text-center items-center">
 
-            <div class="userData card:hover basis-1/6 basis-1/5 bg-teal-600">
+        <section class="grid grid-cols-3 lg:grid-cols-6 gap-y-2 text-center min-h-14">
+
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="dailyCalories">Calories:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="idealWeight">Goal Weight:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="macroNutrients">Protein:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="PLACEHOLDER1">Carbs:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="PLACEHOLDER2">Fat:</h3>
 
@@ -114,6 +115,7 @@
                         </li>
                         </ul>
                     </div>
+                  
                 </div>
 
                 <div id="cuisineFilterContainer">
@@ -252,7 +254,7 @@
 
         </section>
 
-        <aside class="favoritesContainer text-xl mt-4 mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
+        <aside class="favoritesContainer text-xl mt-4 lg:mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
 
             <h2 class="p-2 underline text-center font-bold underline-offset-4">Favorite Meals</h2>
 

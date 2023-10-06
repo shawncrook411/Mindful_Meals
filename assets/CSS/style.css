@@ -49,10 +49,6 @@ nav {
     font-size: 14pt;
 }
 
-.userData:hover {
-    transition: all 1s ease-in-out;
-}
-
 #searchSubmitBtn{
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
 }
@@ -62,7 +58,6 @@ nav {
     border-color: aquamarine;
     border-width: 1.5px;
     margin: 0px 5px 0px 5px;
-    transition: all .75s ease-in-out;
 }
 
 .userData h2{
