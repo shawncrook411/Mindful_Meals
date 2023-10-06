@@ -36,7 +36,6 @@ var getDiet = function (currentUser) {
         })
         .then(function (data) {
         console.log("getDiet works")
-        console.log(data)
         calories = data.data.goals["maintain weight"]
         return calories;        
         })
@@ -53,24 +52,21 @@ var getMacros = function (currentUser) {
             'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
         }    
     };
-
-    fetch(localURL, options)
+    
+    return fetch(localURL, options)
         .then(function (response) {
         return response.json();
         })
         .then(function (data) {
         console.log("getMacros works")
-        console.log(data)
         let macrosReturn = {       
             carbs : data.data.balanced["carbs"],
             fat : data.data.balanced["fat"],
             protein : data.data.balanced["protein"]
         }
-        console.log(macrosReturn)
         return macrosReturn       
-        })        
+    }) 
 }
-
 
 let input = [];
 let returnValue = [];
@@ -196,16 +192,14 @@ var submitInfo = function (event) {
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
 
-        let testing = getMacros(newUser) 
-        setTimeout(() => {
-            console.log(testing + "timeout")}, 5000)       
+        // let testing = getMacros(newUser)
+        // console.log(testing[2])     
 
         newUser.carbs = ''
         newUser.fat = ''
         newUser.protein = ''
         
         Users.push(newUser)
-        console.log(Users)
 
         for (let i = 0; i < 5; i++)
         {
@@ -247,7 +241,6 @@ var refreshModal = function () {
         input[i].value = ''
     }    
    
-    console.log(Users)
     input[0].placeholder = "Name:"
     input[1].placeholder = "Age: (0-80)"
     input[2].placeholder = "Height: (130-230cm)"
@@ -390,7 +383,7 @@ var openUser = function() {
         newButton.textContent = Users[i].userName
         newButton.addEventListener("click", function(){
             currentUser = newButton.getAttribute("data-tag")
-            console.log(currentUser)
+            console.log(currentUser + ": Changed to User")
         })
         userModal.appendChild(newButton)
     }
@@ -399,3 +392,7 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
+
+testing = getMacros(DefaultUser)
+console.log(testing)
+
