@@ -64,6 +64,7 @@ var getMacros = function (currentUser) {
             fat : data.data.balanced["fat"],
             protein : data.data.balanced["protein"]
         }
+        console.log(macrosReturn + "getMacros")
         return macrosReturn       
     }) 
 }
@@ -191,14 +192,15 @@ var submitInfo = function (event) {
         
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
-
-        // let testing = getMacros(newUser)
-        // console.log(testing[2])     
-
-        newUser.carbs = ''
-        newUser.fat = ''
-        newUser.protein = ''
         
+        setMacros = function () {(async ()=>{
+            var testing = await getMacros(DefaultUser)
+            newUser.carbs = testing.carbs
+            newUser.fat = testing.fat
+            newUser.protein = testing.protein
+        })()}         
+        setMacros()      
+
         Users.push(newUser)
 
         for (let i = 0; i < 5; i++)
@@ -393,6 +395,4 @@ userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
 
-testing = getMacros(DefaultUser)
-console.log(testing)
 
