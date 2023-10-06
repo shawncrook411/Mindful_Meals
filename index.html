@@ -15,9 +15,11 @@
 </head>
 
 <body>
-    <header class="bg-teal-700 flex">
+    <header class="bg-teal-700 flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row">
 
         <h1 id="title" class="text-yellow-400 pl-4">Mindful Meals</h1>
+
+        <p class="justify-self-end text-base"><a id="openModal" href="#inputModal" rel="modal:open">New User</a></p>
 
         <button id="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <a href="#usersModal" rel="modal:open"><img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon"></a>
@@ -79,8 +81,6 @@
      
 
     <main id="main" class="bg-zinc-400  columns-3 rows-3 flex lg:flex-row flex-col lg:space-x-4">
-
-        <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p>
 
         <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2">
             
@@ -261,6 +261,8 @@
             <ul id="favoritesList"></ul>
 
         </aside>
+
+        
 
     </main>
 
