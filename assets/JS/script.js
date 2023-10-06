@@ -1,6 +1,10 @@
 let Users = [];
+let cuisineTypeLabels = [];
+let mealTypeLabels = [];
+let healthLabels = [];
+let dietLabels = [];
 
-currentUser = 0 
+let currentUser = 0 
 
 var DefaultUser = {
     userName: 'DefaultUser',
@@ -245,33 +249,37 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
-
-            var cuisineTypeLabels = 'Italian'
-            var mealTypeLabels = 'Dinner'
-            var healthLabels = 'kosher'
-            var dietLabel = 'balanced' 
+          
+            cuisineTypeLabels[0] = 'Italian'
+            mealTypeLabels[0] = 'Dinner'
+            healthLabels[0] = 'kosher'
+            dietLabels[0] = 'balanced' 
 
             var recipeURL = 'https://api.edamam.com/search?&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101&q='+ userSearch
 
-            if(Users[currentUser].calories !== '')
+            if (Users[currentUser].calories !== '')
             {
                 recipeURL = recipeURL + '&calories=' + (Users[currentUser].calories - 200) + '-' + (Users[currentUser].calories + 200)
             }
-            if(cuisineTypeLabels !== '')
+            if (cuisineTypeLabels !== '')
             {
-                recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels 
+                for(let i = 0; i < cuisineTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels[i]} 
             }
             if (mealTypeLabels !== '')
             {
-                recipeURL = recipeURL + '&mealType=' + mealTypeLabels 
+                for(let i = 0; i < mealTypeLabels.length; i++)
+                {recipeURL = recipeURL + '&mealType=' + mealTypeLabels} 
             }
             if (healthLabels !== '')
             {
-                recipeURL = recipeURL + '&health=' + healthLabels
+                for(let i = 0; i < healthLabels.length; i++)
+                {recipeURL = recipeURL + '&health=' + healthLabels}
             }
-            if (recipeURL !== '')
+            if (dietLabels !== '')
             {
-                recipeURL = recipeURL + '&diet=' + dietLabel
+                for(let i = 0; i < dietLabels.length; i++)
+                {recipeURL = recipeURL + '&diet=' + dietLabels}
             }
 
             // fetch for the recipes
@@ -329,10 +337,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
-var changeUser = function () {
-
-}
-
 var openUser = function() {
     userButtons = document.querySelectorAll(".user-button")
     for (let i = 0; i < userButtons.length; i++)
@@ -358,6 +362,3 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
-
-// getRecipe();
-// getDiet();
