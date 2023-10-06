@@ -29,49 +29,49 @@
 
     </header>
 
-    <nav class="flex flex-auto bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
+    <nav class="flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
 
-        <form class="search flex flex-auto mr-20">
+        <form class="search flex flex-auto h-14">
             
             <input class=" bg-teal-600 p-2 basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
 
-            <button class="basis-1/3  max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
+            <button class="basis-1/3 max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3" id="searchSubmitBtn">Search</button>
 
         </form>
 
-        <section class="flex flex-auto basis-2/3 align-middle text-center items-center">
+        <section class="grid grid-cols-3 lg:grid-cols-6 gap-y-2 justify-self-end basis-2/3 text-center min-h-14">
 
-            <div class="userData card:hover basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="dailyCalories">Calories:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="idealWeight">Goal Weight:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="macroNutrients">Protein:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="PLACEHOLDER1">Carbs:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="PLACEHOLDER2">Fat:</h3>
 
             </div>
 
-            <div class="userData basis-1/6 basis-1/5 bg-teal-600">
+            <div class="userData h-full basis-1/6 bg-teal-600">
 
                 <h3 id="PLACEHOLDER3">6</h3>
 
@@ -83,7 +83,7 @@
 
      
 
-    <main id="main" class="bg-zinc-400  columns-3 flex space-x-4">
+    <main id="main" class="bg-zinc-400  columns-3 flex flex-col lg:flex-row lg:space-x-4">
         <!-- <p><a id="openModal" href="#inputModal" rel="modal:open">Open Modal</a></p> -->
 
         <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2">
@@ -93,7 +93,7 @@
                 
                 <h2 class="text-xl mb-4 font-bold text-center">Filter Search</h2>      
 
-                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                   </svg>
                 </button>
@@ -151,7 +151,7 @@
 
         </section>
 
-        <aside class="favoritesContainer text-xl mt-4 mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
+        <aside class="favoritesContainer text-xl mt-4 lg:mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
 
             <h2 class="p-2 underline text-center font-bold underline-offset-4">Favorite Meals</h2>
 
