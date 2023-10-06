@@ -42,6 +42,35 @@ var getDiet = function (currentUser) {
         })
 }
 
+var getMacros = function (currentUser) {
+    let MacrosURL = 'https://fitness-calculator.p.rapidapi.com/macrocalculator'
+    let localURL = MacrosURL + '?goal=maintain' + '&age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + (currentUser.activitylevel.replace("level_", ""))
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'a545dc7272msh5310c0b3bc93c07p135ef8jsne5be6ed602b9',
+            'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+        }    
+    };
+
+    fetch(localURL, options)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log("getMacros works")
+        console.log(data)
+        let macrosReturn = {       
+            carbs : data.data.balanced["carbs"],
+            fat : data.data.balanced["fat"],
+            protein : data.data.balanced["protein"]
+        }
+        console.log(macrosReturn)
+        return macrosReturn       
+        })        
+}
+
 
 let input = [];
 let returnValue = [];
@@ -166,9 +195,16 @@ var submitInfo = function (event) {
         
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
+
+        let testing = getMacros(newUser) 
+        setTimeout(() => {
+            console.log(testing + "timeout")}, 5000)       
+
+        newUser.carbs = ''
+        newUser.fat = ''
+        newUser.protein = ''
         
         Users.push(newUser)
-
         console.log(Users)
 
         for (let i = 0; i < 5; i++)
@@ -236,7 +272,8 @@ openModal.addEventListener("click", refreshModal)
 // only executes when entire DOM is loaded
 
 document.addEventListener('DOMContentLoaded', function() {
-    
+
+   
     // query selectors for the form, and for the results section
     const form = document.querySelector('form');
     const recipeResults = document.getElementById('resultsList')
