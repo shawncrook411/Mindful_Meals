@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
+<body class="bg-teal-700">
     <header class="bg-teal-700 flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row">
 
         <h1 id="title" class="text-yellow-400 pl-4">Mindful Meals</h1>
 
-        <p class="justify-self-end text-base"><a id="openModal" href="#inputModal" rel="modal:open">New User</a></p>
+        
 
         <button id="userIcon" class="absolute top-0 right-0 p-4 max-h-fit">
             <a href="#usersModal" rel="modal:open"><img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon"></a>
@@ -31,9 +31,11 @@
 
     </header>
 
-    <nav class="flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row bg-teal-600 max-h-fit px-15 py-3 text-yellow-400">
+    <p class="text-xl float-right text-yellow-400 bg-teal-700 h-fit flex content-center p-5"><a id="openModal" href="#inputModal" rel="modal:open">New User</a></p>
 
-        <form class="search flex flex-auto h-14">
+    <nav class="flex flex-auto flex-col gap-x-16 gap-y-8 lg:flex-row bg-teal-600 max-h-fit px-15 py-3 text-yellow-400 rounded-lg">
+
+        <form class="search flex flex-auto h-14 p-1 pl-3">
             
             <input class=" bg-teal-600 p-2 basis-full lg:basis-2/3 text-white-400/25 border-2 border-teal-300" type="search" id="searchField" placeholder="Keywords">
 
@@ -42,7 +44,7 @@
         </form>
 
 
-        <section class="grid grid-cols-3 lg:grid-cols-5 gap-y-2 text-center min-h-14">
+        <section class="grid grid-cols-3 lg:grid-cols-5 gap-y-2 p-1 pr-2 text-center min-h-14">
 
             <div class="userData h-full basis-1/6 bg-teal-600">
 
@@ -80,9 +82,9 @@
 
      
 
-    <main id="main" class="bg-zinc-400  columns-3 rows-3 flex lg:flex-row flex-col lg:space-x-4">
+    <main id="main" class="bg-teal-700  columns-3 rows-3 flex grow lg:flex-row flex-col lg:space-x-4 h-screen">
 
-        <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2">
+        <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2 h-full">
             
             
             <div class="rounded-lg flex space-y-4 bg-teal-600"></div>
@@ -90,7 +92,7 @@
                 <h2 class="text-xl mb-4 font-bold text-center">Filter Search</h2>      
 
                 <div id="filterContainer" class="p-2">
-                    <div id="filterDropMeal" class="filter bg-teal-800 text-yellow-400">
+                    <div id="filterDropMeal" class="filter bg-teal-800 text-yellow-400 p-2">
                         <form action="/action_page.php">
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
@@ -103,7 +105,7 @@
                         </form>
                     </div>
     
-                    <div id="filterDropcuisine" class="filter bg-teal-800 text-yellow-400">
+                    <div id="filterDropcuisine" class="filter bg-teal-800 text-yellow-400 p-2">
                         <form action="/action_page.php">
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
@@ -121,7 +123,7 @@
                         </form>
                     </div>
     
-                    <div id="filterDropDiet" class="filter bg-teal-800 text-yellow-400">
+                    <div id="filterDropDiet" class="filter bg-teal-800 text-yellow-400 p-2">
                         <form action="/action_page.php">
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
@@ -134,7 +136,7 @@
                         </form>
                     </div>
     
-                    <div id="filterDropHealth" class="filter bg-teal-800 text-yellow-400">
+                    <div id="filterDropHealth" class="filter bg-teal-800 text-yellow-400 p-2">
                         <form action="/action_page.php">
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
@@ -150,67 +152,32 @@
                             </select>
                         </form>
                     </div>
-                </div>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown" class="bg-white shadow w-44">
-                        <ul class="text-sm text-black hidden">
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Alcohol-Free</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Dairy-Free</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Fish-Free</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Gluten-Free</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Kosher</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Low-Sugar</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Vegan</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Vegetarian</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 dark:hover:bg-teal-800 dark:hover:text-yellow-400">Peanut-Free</a>
-                        </li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
 
             <div class="filterListsContainer">
 
-                <ul id="filterList">selected filter</ul>
+                <ul id="filterList" class="text-white p-4">selected filter</ul>
 
             </div>
 
-            <button #="filterApplyBtn">Filter</input>
+            <button id="filterApplyBtn" class="max-w-fit px-5 max-h-fit border-2 border-teal-300 bg-teal-600 rounded-xl mx-3 text-yellow-400">Filter</input>
 
         </aside>
 
-        <section class="resultsContainer mt-4 bg-teal-600 rounded-lg box-border basis-3/5 shadow-xl text-xl">
+        <section class="resultsContainer mt-4 pr-4 pl-4 bg-teal-600 rounded-lg box-border basis-3/5 shadow-xl text-xl h-screen overflow-auto">
 
             <h2 class="bg-teal-600 rounded-lg p-2 font-bold text-center">Your Results!!!</h2>
 
             <div class="results">
 
-                <ul id="resultsList"></ul>
+                <ul id="resultsList" class="p-2"></ul>
 
             </div>
 
 
         </section>
 
-        <aside class="favoritesContainer text-xl mt-4 lg:mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl">
+        <aside class="favoritesContainer text-xl mt-4 lg:mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl pl-6 pr-6 h-screen overflow-auto">
 
             <h2 class="p-2 underline text-center font-bold underline-offset-4">Favorite Meals</h2>
 
@@ -222,7 +189,7 @@
 
     </main>
 
-    <footer class="bg-zinc-400"></footer>
+    <footer class="bg-teal-700"></footer>
 
     <script src="./assets/js/script.js"></script>
 
