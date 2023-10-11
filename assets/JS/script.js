@@ -297,19 +297,20 @@ document.addEventListener('DOMContentLoaded', function() {
             recipe.forEach(recipe => {
             // creates the card for each individual recipe, and adds the card class
             const card = document.createElement('div');
-            card.classList.add('card');
+            card.classList.add('card', 'favoritesCard', 'bg-teal-700');
     
     
             // adds the corresponding image for said recipe, as well as the name of the recipe
             const img = document.createElement('img');
             img.src = recipe.image;
             img.alt = recipe.label;
+            img.classList.add('recipeImage', 'bg-cover', 'rounded-lg')
     
     
             // creates the h3 to put the name of the recipe in
             const heading = document.createElement('h3');
             heading.innerText = recipe.label;
-    
+            heading.classList.add('recipeText')
     
             // creates icon for favorites
             const heart = document.createElement('i');
@@ -418,30 +419,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // creates the card for each individual recipe, and adds the card class
                     const card = document.createElement('div');
-                    card.classList.add('card');
+                    card.classList.add('card', 'resultcard', 'bg-teal-700');
     
     
                     // adds the corresponding image for said recipe, as well as the name of the recipe
                     const img = document.createElement('img');
+                    img.classList.add('recipeImage', 'bg-cover', 'rounded-lg')
                     img.src = recipe.recipe.image;
                     img.alt = recipe.recipe.label;
     
-    
                     // creates the h3 to put the name of the recipe in
-                    const heading = document.createElement('h3');
+                    const heading = document.createElement('div');
                     heading.innerText = recipe.recipe.label;
-    
+                    heading.classList.add('recipeText')
+
     
                     // creates icon for favorites
                     const heart = document.createElement('i');
-                    heart.classList.add('sourceText', 'fa-regular', 'fa-heart');
+                    heart.classList.add('sourceText', 'fa-regular', 'fa-heart', 'recipeText');
     
                     heading.appendChild(heart);
     
                     // adds the image and heading to the card created previously
-                    card.appendChild(heading);
                     card.appendChild(img);
-                    
+                    card.appendChild(heading);
+
     
                     // appends the recipe card to the recipe result section
                     recipeResults.appendChild(card);
