@@ -36,12 +36,38 @@ var getDiet = function (currentUser) {
         })
         .then(function (data) {
         console.log("getDiet works")
-        console.log(data)
         calories = data.data.goals["maintain weight"]
         return calories;        
         })
 }
 
+var getMacros = function (currentUser) {
+    let MacrosURL = 'https://fitness-calculator.p.rapidapi.com/macrocalculator'
+    let localURL = MacrosURL + '?goal=maintain' + '&age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + (currentUser.activitylevel.replace("level_", ""))
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'a545dc7272msh5310c0b3bc93c07p135ef8jsne5be6ed602b9',
+            'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+        }    
+    };
+    
+    return fetch(localURL, options)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log("getMacros works")
+        let macrosReturn = {       
+            carbs : data.data.balanced["carbs"],
+            fat : data.data.balanced["fat"],
+            protein : data.data.balanced["protein"]
+        }
+        console.log(macrosReturn + "getMacros")
+        return macrosReturn       
+    }) 
+}
 
 let input = [];
 let returnValue = [];
@@ -71,7 +97,7 @@ returnValueDiv.appendChild(returnList)
 for (let i = 0; i < 6; i++)
 {
     input[i] = document.createElement("input")
-    input[i].setAttribute("class", "#")
+    input[i].setAttribute("class", "# modalInput")
     inputDiv.appendChild(input[i])  
 }
 
@@ -85,10 +111,10 @@ main.appendChild(modal)
 
 errorParagraph = document.createElement("p")
 errorParagraph.textContent = "You must fill in all the inputs!"
-errorParagraph.setAttribute("class", "error")
+errorParagraph.setAttribute("class", "error errorMessage")
 
 submitInfoButton = document.createElement("button")
-submitInfoButton.setAttribute("class", "#")
+submitInfoButton.setAttribute("class", "# ")
 submitInfoButton.textContent = "Submit to create new User"
 
 inputDiv.appendChild(submitInfoButton)
@@ -167,9 +193,15 @@ var submitInfo = function (event) {
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
         
-        Users.push(newUser)
+        setMacros = function () {(async ()=>{
+            var testing = await getMacros(DefaultUser)
+            newUser.carbs = testing.carbs
+            newUser.fat = testing.fat
+            newUser.protein = testing.protein
+        })()}         
+        setMacros()      
 
-        console.log(Users)
+        Users.push(newUser)
 
         for (let i = 0; i < 5; i++)
         {
@@ -211,7 +243,6 @@ var refreshModal = function () {
         input[i].value = ''
     }    
    
-    console.log(Users)
     input[0].placeholder = "Name:"
     input[1].placeholder = "Age: (0-80)"
     input[2].placeholder = "Height: (130-230cm)"
@@ -266,19 +297,20 @@ document.addEventListener('DOMContentLoaded', function() {
             recipe.forEach(recipe => {
             // creates the card for each individual recipe, and adds the card class
             const card = document.createElement('div');
-            card.classList.add('card');
+            card.classList.add('card', 'favoritesCard', 'bg-teal-700');
     
     
             // adds the corresponding image for said recipe, as well as the name of the recipe
             const img = document.createElement('img');
             img.src = recipe.image;
             img.alt = recipe.label;
+            img.classList.add('recipeImage', 'bg-cover', 'rounded-lg')
     
     
             // creates the h3 to put the name of the recipe in
             const heading = document.createElement('h3');
             heading.innerText = recipe.label;
-    
+            heading.classList.add('recipeText')
     
             // creates icon for favorites
             const heart = document.createElement('i');
@@ -328,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
         loadFavoriteRecipe();
-    
     
     // function to search the recipes
     function searchRecipes() {
@@ -388,30 +419,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // creates the card for each individual recipe, and adds the card class
                     const card = document.createElement('div');
-                    card.classList.add('card');
+                    card.classList.add('card', 'resultcard', 'bg-teal-700');
     
     
                     // adds the corresponding image for said recipe, as well as the name of the recipe
                     const img = document.createElement('img');
+                    img.classList.add('recipeImage', 'bg-cover', 'rounded-lg')
                     img.src = recipe.recipe.image;
                     img.alt = recipe.recipe.label;
     
-    
                     // creates the h3 to put the name of the recipe in
-                    const heading = document.createElement('h3');
+                    const heading = document.createElement('div');
                     heading.innerText = recipe.recipe.label;
-    
+                    heading.classList.add('recipeText')
+
     
                     // creates icon for favorites
                     const heart = document.createElement('i');
-                    heart.classList.add('sourceText', 'fa-regular', 'fa-heart');
+                    heart.classList.add('sourceText', 'fa-regular', 'fa-heart', 'recipeText');
     
                     heading.appendChild(heart);
     
                     // adds the image and heading to the card created previously
-                    card.appendChild(heading);
                     card.appendChild(img);
-                    
+                    card.appendChild(heading);
+
     
                     // appends the recipe card to the recipe result section
                     recipeResults.appendChild(card);
@@ -483,7 +515,7 @@ var openUser = function() {
         newButton.textContent = Users[i].userName
         newButton.addEventListener("click", function(){
             currentUser = newButton.getAttribute("data-tag")
-            console.log(currentUser)
+            console.log(currentUser + ": Changed to User")
         })
         userModal.appendChild(newButton)
     }
@@ -492,3 +524,5 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
+
+
