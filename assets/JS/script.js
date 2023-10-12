@@ -242,7 +242,8 @@ var submitInfo = function (event) {
         for (let i = 0; i < 5; i++)
         {
             returnValue[i] = document.createElement("li")
-            returnValue[i].setAttribute("class", "#")       
+            returnValue[i].setAttribute("class", "#") 
+            returnList.      
             returnList.appendChild(returnValue[i])
         }
 

@@ -25,8 +25,9 @@
             <a href="#usersModal" rel="modal:open"><img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon"></a>
         </button>
 
-        <div id="usersModal" class="modal">
-            <p>Select your UserName</p>
+        <div id="usersModal" class="modal text-white flex-col">
+            <p class="text-yellow-400">Select your UserName</p>
+            <br>
         </div>
 
     </header>
@@ -79,12 +80,12 @@
         </section>
 
     </nav>
-
+action_page
      
 
     <main id="main" class="bg-teal-700  columns-3 rows-3 flex grow lg:flex-row flex-col lg:space-x-4 h-screen">
 
-        <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2 h-full">
+        <aside class="filters flex grow mt-4 flex-col basis-1/6 bg-teal-600 rounded-lg shadow-xl p-2 h-full text-white">
             
             
             <div class="rounded-lg flex space-y-4 bg-teal-600"></div>
@@ -93,7 +94,7 @@
 
                 <div id="filterContainer" class="p-2">
                     <div id="filterDropMeal" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
+                        <form>
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                               <option value="breakfast">Breakfast</option>
@@ -106,9 +107,9 @@
                     </div>
     
                     <div id="filterDropcuisine" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                        <form>
+                            <label for="cuisineType">Cuisine Type:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                                 <option value="american">American</option>
                                 <option value="asian">Asian</option>
                                 <option value="british">British</option>
@@ -124,9 +125,9 @@
                     </div>
     
                     <div id="filterDropDiet" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                        <form>
+                            <label for="dietType">Diet Type:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                                 <option value="balanced">Balanced</option>
                                 <option value="highfiber">High-Fiber</option>
                                 <option value="highprotein">High-Protein</option>
@@ -137,18 +138,18 @@
                     </div>
     
                     <div id="filterDropHealth" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
-                                <option value="balanced">Alcohol-Free</option>
-                                <option value="highfiber">Dairy-Free</option>
-                                <option value="highprotein">Fish-Free</option>
-                                <option value="lowcarb">Gluten-Free</option>
-                                <option value="lowsodium">Kosher</option>
-                                <option value="balanced">Low-Sugar</option>
-                                <option value="highfiber">Vegan</option>
-                                <option value="highprotein">Vegetarian</option>
-                                <option value="lowcarb">Peanut-Free</option>
+                        <form>
+                            <label for="healthLabels">Health Labels:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                                <option value="alcoholfree">Alcohol-Free</option>
+                                <option value="dairyfree">Dairy-Free</option>
+                                <option value="fishfree">Fish-Free</option>
+                                <option value="glutenfree">Gluten-Free</option>
+                                <option value="kosher">Kosher</option>
+                                <option value="lowsugar">Low-Sugar</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="peanutfree">Peanut-Free</option>
                             </select>
                         </form>
                     </div>
@@ -166,7 +167,7 @@
 
         <section class="resultsContainer mt-4 pr-4 pl-4 bg-teal-600 rounded-lg box-border basis-3/5 shadow-xl text-xl h-screen overflow-auto">
 
-            <h2 class="bg-teal-600 rounded-lg p-2 font-bold text-center">Your Results!!!</h2>
+            <h2 class="bg-teal-600 rounded-lg p-2 font-bold text-white text-center">Recipe Search Results</h2>
 
             <div class="results">
 
@@ -179,7 +180,7 @@
 
         <aside class="favoritesContainer text-xl mt-4 lg:mr-4 basis-1/6 bg-teal-600 rounded-lg box-border shadow-xl pl-6 pr-6 h-screen overflow-auto">
 
-            <h2 class="p-2 underline text-center font-bold underline-offset-4">Favorite Meals</h2>
+            <h2 class="p-2 text-center font-bold text-white">Favorite Meals</h2>
 
             <ul id="favoritesList"></ul>
 
