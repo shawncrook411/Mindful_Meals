@@ -129,6 +129,14 @@ inputDiv.appendChild(submitInfoButton)
 //Function for creating all the necessary variables for the given data and stores them in an object. 
 var submitInfo = function (event) {
 
+    localUserName = 0 
+    localAge = 0 
+    localHeight = 0 
+    localWeight = 0
+    localActivityLevel = 0
+    localGender = 0
+    failTest = 0;
+
     event.preventDefault()   
     errorParagraph.setAttribute("style", "display:none")
     inputDiv.appendChild(errorParagraph)    
@@ -141,17 +149,19 @@ var submitInfo = function (event) {
     else
     {
         errorParagraph.textContent = "You must fill input an age 1 - 80"
-        errorParagraph.setAttribute("style", "display:visible") 
+        errorParagraph.setAttribute("style", "display:visible")
+        failTest = 1 
     }    
 
     //Data Validation: checks if the height is within 130cm to 230cm
     testHeight = Math.floor(input[2].value)
-    if (testHeight <= 230 && 130 <= testHeight)
+    if (testHeight <= 230 && 130 <= testHeight && failTest === 0)
     {localHeight = testHeight}
     else
     {
         errorParagraph.textContent = "Your height must be between 130-230cm"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     } 
 
     //Data Validation: Checks if weight is within 40-160 kg, rounded down
@@ -162,6 +172,7 @@ var submitInfo = function (event) {
     {
         errorParagraph.textContent = "Your weight must be between 40-160kg"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     } 
 
     //Data Validation: checks if the input value is between 1 - 6, then stores in the correct format
@@ -171,6 +182,7 @@ var submitInfo = function (event) {
     {
         errorParagraph.textContent = "You must input an activity level 1-6"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     }
 
     //Data Validation: checks if the given gender is male or female and then stores as the corret format
@@ -184,14 +196,20 @@ var submitInfo = function (event) {
         {
             localGender = "male"
         }
-        if (testGender === "F" || testGender === "f")
+        else if (testGender === "F" || testGender === "f")
         {
             localGender = "female"
+        }
+        else
+        {
+            errorParagraph.textContent = "You must input a gender of either male or female"
+            errorParagraph.setAttribute("style", "display:visible")     
+            failTest = 1 
         }
     }
 
     //Data Validation: Checks to make sure all data exists if not it will fail
-    if (localUserName && localAge && localHeight && localWeight && localActivityLevel && localGender)
+    if (localUserName != 0 && localAge != 0 && localHeight != 0 && localWeight != 0 && localActivityLevel != 0 && localGender != 0 && failTest === 0)
     {
         //Creates a new user Object
         var newUser = 
@@ -214,11 +232,12 @@ var submitInfo = function (event) {
             newUser.carbs = testing.carbs
             newUser.fat = testing.fat
             newUser.protein = testing.protein
+            Users.push(newUser)
         })()}         
         setMacros()      
 
         //Stores the newUser to the array of users objects
-        Users.push(newUser)
+        
 
         for (let i = 0; i < 5; i++)
         {
@@ -242,7 +261,6 @@ var submitInfo = function (event) {
         createAnotherButton.setAttribute("id", "createAnother")
         modal.appendChild(createAnotherButton)
     }
-
     else
     {   
         errorParagraph.textContent = "You must fill in all the inputs!"     
@@ -534,6 +552,7 @@ var openUser = function() {
         newButton.addEventListener("click", function(){
             currentUser = newButton.getAttribute("data-tag")
             console.log(currentUser + ": Changed to User")
+            console.log(Users[1])
         })
         userModal.appendChild(newButton)
     }
