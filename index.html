@@ -25,8 +25,9 @@
             <a href="#usersModal" rel="modal:open"><img id="userIcon" class="padding-top-6 align-middle"src="./assets/images/userIcon.png" alt="User Icon"></a>
         </button>
 
-        <div id="usersModal" class="modal">
-            <p>Select your UserName</p>
+        <div id="usersModal" class="modal text-white flex-col">
+            <p class="text-yellow-400">Select your UserName</p>
+            <br>
         </div>
 
     </header>
@@ -79,7 +80,7 @@
         </section>
 
     </nav>
-
+action_page
      
 
     <main id="main" class="bg-teal-700  columns-3 rows-3 flex grow lg:flex-row flex-col lg:space-x-4 h-screen">
@@ -93,7 +94,7 @@
 
                 <div id="filterContainer" class="p-2">
                     <div id="filterDropMeal" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
+                        <form>
                             <label for="cars">Meal Type:</label>
                             <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                               <option value="breakfast">Breakfast</option>
@@ -106,9 +107,9 @@
                     </div>
     
                     <div id="filterDropcuisine" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                        <form>
+                            <label for="cuisineType">Cuisine Type:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                                 <option value="american">American</option>
                                 <option value="asian">Asian</option>
                                 <option value="british">British</option>
@@ -124,9 +125,9 @@
                     </div>
     
                     <div id="filterDropDiet" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                        <form>
+                            <label for="dietType">Diet Type:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
                                 <option value="balanced">Balanced</option>
                                 <option value="highfiber">High-Fiber</option>
                                 <option value="highprotein">High-Protein</option>
@@ -137,18 +138,18 @@
                     </div>
     
                     <div id="filterDropHealth" class="filter bg-teal-800 text-yellow-400 p-2">
-                        <form action="/action_page.php">
-                            <label for="cars">Meal Type:</label>
-                            <select name="cars" id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
-                                <option value="balanced">Alcohol-Free</option>
-                                <option value="highfiber">Dairy-Free</option>
-                                <option value="highprotein">Fish-Free</option>
-                                <option value="lowcarb">Gluten-Free</option>
-                                <option value="lowsodium">Kosher</option>
-                                <option value="balanced">Low-Sugar</option>
-                                <option value="highfiber">Vegan</option>
-                                <option value="highprotein">Vegetarian</option>
-                                <option value="lowcarb">Peanut-Free</option>
+                        <form>
+                            <label for="healthLabels">Health Labels:</label>
+                            <select id="cars" class="p-2 bg-teal-800 text-yellow-400 dark:hover:bg-teal-800 dark:hover:text-yellow-400">
+                                <option value="alcoholfree">Alcohol-Free</option>
+                                <option value="dairyfree">Dairy-Free</option>
+                                <option value="fishfree">Fish-Free</option>
+                                <option value="glutenfree">Gluten-Free</option>
+                                <option value="kosher">Kosher</option>
+                                <option value="lowsugar">Low-Sugar</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="peanutfree">Peanut-Free</option>
                             </select>
                         </form>
                     </div>
