@@ -458,33 +458,37 @@ document.addEventListener('DOMContentLoaded', function() {
             healthLabels = dropHealth.value
             dietLabels = dropDiet.value
             
+            
+                       
             var recipeURL = 'https://api.edamam.com/search?&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101&q='+ userSearch
-
+            var parameters 
             if (Users[currentUser].calories !== '')
             {
-                recipeURL = recipeURL + '&calories=' + (Users[currentUser].calories - 200) + '-' + (Users[currentUser].calories + 200)
+                parameters = '&calories=' + (Users[currentUser].calories - 200) + '-' + (Users[currentUser].calories + 200)
             }
-            if (cuisineTypeLabels !== '')
+            if (cuisineTypeLabels !== '' && cuisineTypeLabels != 'none')
             {
-               recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels
+               parameters +=  '&cuisinetype=' + cuisineTypeLabels
             }
-            if (mealTypeLabels !== '')
+            if (mealTypeLabels !== '' && mealTypeLabels != 'none')
             {
-                recipeURL = recipeURL + '&mealType=' + mealTypeLabels
+                parameters +=  '&mealType=' + mealTypeLabels
             }
-            if (healthLabels !== '')
+            if (healthLabels !== '' && healthLabels != 'none')
             {
-                recipeURL = recipeURL + '&health=' + healthLabels
+                parameters +=  '&health=' + healthLabels
             }
-            if (dietLabels !== '')
+            if (dietLabels !== '' && dietLabels != 'none')
             {
-                recipeURL = recipeURL + '&diet=' + dietLabels
+                parameters = parameters + '&diet=' + dietLabels
             }
 
+            recipeURL += parameters
             // fetch for the recipes
             fetch(recipeURL)
             .then((response) => response.json())
             .then((data) => {
+
                 
                 // creating variable for the returned recipes
                 const recipes = data.hits;
@@ -495,8 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // creates the card for each individual recipe, and adds the card class
                     const card = document.createElement('div');
-                    card.classList.add('card', 'resultcard', 'bg-teal-700');
-    
+                    card.classList.add('card', 'resultcard', 'bg-teal-700');    
     
                     // adds the corresponding image for said recipe, as well as the name of the recipe
                     const img = document.createElement('img');
@@ -508,7 +511,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     const heading = document.createElement('div');
                     heading.innerText = recipe.recipe.label;
                     heading.classList.add('recipeText')
-
     
                     // creates icon for favorites
                     const heart = document.createElement('i');
