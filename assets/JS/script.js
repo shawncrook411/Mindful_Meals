@@ -252,6 +252,25 @@ var submitInfo = function (event) {
 
         //Stores the newUser to the array of users objects
 
+
+        
+
+        for (let i = 0; i < 5; i++)
+        {
+            returnValue[i] = document.createElement("li")
+            returnValue[i].setAttribute("class", "#") 
+            returnList.      
+            returnList.appendChild(returnValue[i])
+        }
+
+        //Sets the values to the given info that's been accessed so the user can see their info
+        returnValue[0].textContent = "New User Created! - " + newUser.userName 
+        returnValue[1].textContent = "Recommended Daily Calories: " + newUser.calories 
+        returnValue[2].textContent = "Protein: " + newUser.protein
+        returnValue[3].textContent = "Fat: " + newUser.fat
+        returnValue[4].textContent = "Carbohydrates: "  + newUser.carbs
+        submitInfoButton.setAttribute("style", "display:none") 
+
         //Creates a button that can be pressed to create another User
         createAnotherButton = document.createElement("button")
         createAnotherButton.addEventListener("click", refreshModal)
