@@ -470,15 +470,15 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                parameters +=  '&cuisinetype=' + cuisineTypeLabels
             }
-            if (mealTypeLabels !== '' && mealTypeLabels != 'none')
+            if (mealTypeLabels !== '' && mealTypeLabels !== 'none')
             {
                 parameters +=  '&mealType=' + mealTypeLabels
             }
-            if (healthLabels !== '' && healthLabels != 'none')
+            if (healthLabels !== '' && healthLabels !== 'none')
             {
                 parameters +=  '&health=' + healthLabels
             }
-            if (dietLabels !== '' && dietLabels != 'none')
+            if (dietLabels !== '' && dietLabels !== 'none')
             {
                 parameters = parameters + '&diet=' + dietLabels
             }
