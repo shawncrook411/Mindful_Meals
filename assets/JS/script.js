@@ -229,14 +229,30 @@ var submitInfo = function (event) {
         //Runs function to nutrients info given the current user. Has an await to wait for the fetch
         setMacros = function () {(async ()=>{
             var testing = await getMacros(DefaultUser)
-            newUser.carbs = testing.carbs
-            newUser.fat = testing.fat
-            newUser.protein = testing.protein
+            newUser.carbs = Math.floor(testing.carbs)
+            newUser.fat = Math.floor(testing.fat)
+            newUser.protein = Math.floor(testing.protein)
             Users.push(newUser)
+            for (let i = 0; i < 5; i++)
+            {
+                returnValue[i] = document.createElement("li")
+                returnValue[i].setAttribute("class", "#")       
+                returnList.appendChild(returnValue[i])
+            }
+    
+            //Sets the values to the given info that's been accessed so the user can see their info
+            returnValue[0].textContent = "New User Created! - " + newUser.userName 
+            returnValue[1].textContent = "Recommended Daily Calories: " + newUser.calories 
+            returnValue[2].textContent = "Protein: " + newUser.protein
+            returnValue[3].textContent = "Fat: " + newUser.fat
+            returnValue[4].textContent = "Carbohydrates: "  + newUser.carbs
+            submitInfoButton.setAttribute("style", "display:none") 
         })()}         
         setMacros()      
 
         //Stores the newUser to the array of users objects
+
+
         
 
         for (let i = 0; i < 5; i++)
@@ -424,21 +440,24 @@ document.addEventListener('DOMContentLoaded', function() {
         loadFavoriteRecipe();
     
     // function to search the recipes
-    function searchRecipes() {
-    
+    function searchRecipes() {    
     
         // gets the users search input
-        const userSearch = document.getElementById('searchField').value
+        var userSearch = document.getElementById('searchField').value
         
         // error handling, if the searchbar is empty, code doesn't execute when submitted
         if (userSearch.trim() !== '') {
-                
-          
-            cuisineTypeLabels[0] = 'Italian'
-            mealTypeLabels[0] = 'Dinner'
-            healthLabels[0] = 'kosher'
-            dietLabels[0] = 'balanced' 
+            
+            dropMeal = document.getElementById("dropMeal")
+            dropCuisine = document.getElementById("dropCuisine")
+            dropDiet = document.getElementById("dropDiet")
+            dropHealth = document.getElementById("dropHealth")
 
+            cuisineTypeLabels = dropCuisine.value
+            mealTypeLabels = dropMeal.value
+            healthLabels = dropHealth.value
+            dietLabels = dropDiet.value
+            
             var recipeURL = 'https://api.edamam.com/search?&app_id=f21289d1&app_key=1ae2a0e4c64ececf2fea98460046a101&q='+ userSearch
 
             if (Users[currentUser].calories !== '')
@@ -447,23 +466,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (cuisineTypeLabels !== '')
             {
-                for(let i = 0; i < cuisineTypeLabels.length; i++)
-                {recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels[i]} 
+               recipeURL = recipeURL + '&cuisinetype=' + cuisineTypeLabels
             }
             if (mealTypeLabels !== '')
             {
-                for(let i = 0; i < mealTypeLabels.length; i++)
-                {recipeURL = recipeURL + '&mealType=' + mealTypeLabels} 
+                recipeURL = recipeURL + '&mealType=' + mealTypeLabels
             }
             if (healthLabels !== '')
             {
-                for(let i = 0; i < healthLabels.length; i++)
-                {recipeURL = recipeURL + '&health=' + healthLabels}
+                recipeURL = recipeURL + '&health=' + healthLabels
             }
             if (dietLabels !== '')
             {
-                for(let i = 0; i < dietLabels.length; i++)
-                {recipeURL = recipeURL + '&diet=' + dietLabels}
+                recipeURL = recipeURL + '&diet=' + dietLabels
             }
 
             // fetch for the recipes
@@ -476,8 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 lastSearchedRecipes = recipes;
     
                 // for each recipe ...
-                recipes.forEach(recipe => {
-    
+                recipes.forEach(recipe => {    
     
                     // creates the card for each individual recipe, and adds the card class
                     const card = document.createElement('div');
