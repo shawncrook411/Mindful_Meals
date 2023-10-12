@@ -4,8 +4,9 @@ let mealTypeLabels = [];
 let healthLabels = [];
 let dietLabels = [];
 
-let currentUser = 0 
+let currentUser = 0 //Sets the current user to the default.
 
+//Creates a Default User in case the user doesn't create a profile
 var DefaultUser = {
     userName: 'DefaultUser',
     age: '25', // 0-80
@@ -18,6 +19,7 @@ var DefaultUser = {
 
 Users.push(DefaultUser)
 
+//function to fetch the data from the calorie calculator. Will return just the value of calories
 var getDiet = function (currentUser) {
     let DietURL = 'https://fitness-calculator.p.rapidapi.com/dailycalorie/'
     let localURL = DietURL + '?' + 'age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + currentUser.activitylevel
@@ -41,6 +43,7 @@ var getDiet = function (currentUser) {
         })
 }
 
+// Function to fetch the data from the fitness calculator. Will return an object wtih carbs, fat, and protein data
 var getMacros = function (currentUser) {
     let MacrosURL = 'https://fitness-calculator.p.rapidapi.com/macrocalculator'
     let localURL = MacrosURL + '?goal=maintain' + '&age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + (currentUser.activitylevel.replace("level_", ""))
@@ -74,6 +77,7 @@ let returnValue = [];
 
 openModal = document.getElementById("openModal")
 
+//Creates the modal and adds the class/ID. Creates all the elements that append to it as well
 modal = document.createElement("section")
 modal.setAttribute("class", "modal")
 modal.setAttribute("id", "inputModal")
@@ -94,6 +98,7 @@ returnList = document.createElement("ul")
 returnList.setAttribute("id", "returnList")
 returnValueDiv.appendChild(returnList)
 
+//Creates the 6 input forms for the Modal and appends them
 for (let i = 0; i < 6; i++)
 {
     input[i] = document.createElement("input")
@@ -109,42 +114,57 @@ modal.appendChild(returnValueDiv)
 main = document.getElementById("main")
 main.appendChild(modal)
 
+//Creates an error paragraph that can be displayed/hidden when needed. Text will be updated with different errors
 errorParagraph = document.createElement("p")
 errorParagraph.textContent = "You must fill in all the inputs!"
 errorParagraph.setAttribute("class", "error errorMessage")
 
+//Creates a submit button for the modal that runs the submitInfo funciton
 submitInfoButton = document.createElement("button")
 submitInfoButton.setAttribute("class", "# ")
 submitInfoButton.textContent = "Submit to create new User"
 
 inputDiv.appendChild(submitInfoButton)
 
+//Function for creating all the necessary variables for the given data and stores them in an object. 
 var submitInfo = function (event) {
+
+    localUserName = 0 
+    localAge = 0 
+    localHeight = 0 
+    localWeight = 0
+    localActivityLevel = 0
+    localGender = 0
+    failTest = 0;
 
     event.preventDefault()   
     errorParagraph.setAttribute("style", "display:none")
     inputDiv.appendChild(errorParagraph)    
 
     localUserName = input[0].value
-
+    
+    //Data Validation: checks if the input age is within 1-80
     if (input[1].value <= 80 && 0 < input[1].value)
     {localAge = input[1].value}
     else
     {
         errorParagraph.textContent = "You must fill input an age 1 - 80"
-        errorParagraph.setAttribute("style", "display:visible") 
+        errorParagraph.setAttribute("style", "display:visible")
+        failTest = 1 
     }    
 
+    //Data Validation: checks if the height is within 130cm to 230cm
     testHeight = Math.floor(input[2].value)
-    if (testHeight <= 230 && 130 <= testHeight)
+    if (testHeight <= 230 && 130 <= testHeight && failTest === 0)
     {localHeight = testHeight}
     else
     {
         errorParagraph.textContent = "Your height must be between 130-230cm"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     } 
 
-
+    //Data Validation: Checks if weight is within 40-160 kg, rounded down
     testWeight = Math.floor(input[3].value)
     if (testWeight <= 160 && 40 <= testWeight)
     {localWeight = testWeight}
@@ -152,16 +172,20 @@ var submitInfo = function (event) {
     {
         errorParagraph.textContent = "Your weight must be between 40-160kg"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     } 
 
-    if (input[4].value <= 7 && 0 < input[4].value)
+    //Data Validation: checks if the input value is between 1 - 6, then stores in the correct format
+    if (input[4].value <= 6 && 0 < input[4].value)
     {localActivityLevel = "level_" + input[4].value}
     else
     {
         errorParagraph.textContent = "You must input an activity level 1-6"
         errorParagraph.setAttribute("style", "display:visible") 
+        failTest = 1 
     }
 
+    //Data Validation: checks if the given gender is male or female and then stores as the corret format
     testGender = input[5].value
     testGender = testGender.toLowerCase()
     if (testGender === "male" || testGender === "female")
@@ -172,14 +196,22 @@ var submitInfo = function (event) {
         {
             localGender = "male"
         }
-        if (testGender === "F" || testGender === "f")
+        else if (testGender === "F" || testGender === "f")
         {
             localGender = "female"
         }
+        else
+        {
+            errorParagraph.textContent = "You must input a gender of either male or female"
+            errorParagraph.setAttribute("style", "display:visible")     
+            failTest = 1 
+        }
     }
 
-    if (localUserName && localAge && localHeight && localWeight && localActivityLevel && localGender)
+    //Data Validation: Checks to make sure all data exists if not it will fail
+    if (localUserName != 0 && localAge != 0 && localHeight != 0 && localWeight != 0 && localActivityLevel != 0 && localGender != 0 && failTest === 0)
     {
+        //Creates a new user Object
         var newUser = 
         {
             userName : input[0].value,
@@ -190,18 +222,22 @@ var submitInfo = function (event) {
             gender: localGender
         }        
         
+        //Runs function to calorie info given the current user
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
         
+        //Runs function to nutrients info given the current user. Has an await to wait for the fetch
         setMacros = function () {(async ()=>{
             var testing = await getMacros(DefaultUser)
             newUser.carbs = testing.carbs
             newUser.fat = testing.fat
             newUser.protein = testing.protein
+            Users.push(newUser)
         })()}         
         setMacros()      
 
-        Users.push(newUser)
+        //Stores the newUser to the array of users objects
+        
 
         for (let i = 0; i < 5; i++)
         {
@@ -210,20 +246,21 @@ var submitInfo = function (event) {
             returnList.appendChild(returnValue[i])
         }
 
+        //Sets the values to the given info that's been accessed so the user can see their info
         returnValue[0].textContent = "New User Created! - " + newUser.userName 
-        returnValue[1].textContent = "Recommended Daily Calories: "    
-        returnValue[2].textContent = "Protein:"
-        returnValue[3].textContent = "Fat: "
-        returnValue[4].textContent = "Carbohydrates: "  
+        returnValue[1].textContent = "Recommended Daily Calories: " + newUser.calories 
+        returnValue[2].textContent = "Protein: " + newUser.protein
+        returnValue[3].textContent = "Fat: " + newUser.fat
+        returnValue[4].textContent = "Carbohydrates: "  + newUser.carbs
         submitInfoButton.setAttribute("style", "display:none") 
 
+        //Creates a button that can be pressed to create another User
         createAnotherButton = document.createElement("button")
         createAnotherButton.addEventListener("click", refreshModal)
         createAnotherButton.textContent = "Create another user?"
         createAnotherButton.setAttribute("id", "createAnother")
         modal.appendChild(createAnotherButton)
     }
-
     else
     {   
         errorParagraph.textContent = "You must fill in all the inputs!"     
@@ -231,12 +268,12 @@ var submitInfo = function (event) {
     }
 }
 
+    // Refreshes the Modal so that the old data doesn't show the previous user
 var refreshModal = function () {  
     
     errorParagraph.setAttribute("style", "display:none") 
     submitInfoButton.addEventListener("click", submitInfo)
     submitInfoButton.setAttribute("style", "display:visible") 
-
 
     for (let i = 0; i < 6; i++)
     {
@@ -263,8 +300,6 @@ var refreshModal = function () {
 }
 
 openModal.addEventListener("click", refreshModal)
-
-
 
 // only executes when entire DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -478,8 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             heart.classList.remove('fa-solid');
                             heart.classList.add('fa-regular');
                         }
-                    })
-    
+                    })   
     
                 });
             })
@@ -500,6 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 })
 
+//Function to create buttons for all the given users
 var openUser = function() {
     userButtons = document.querySelectorAll(".user-button")
     for (let i = 0; i < userButtons.length; i++)
@@ -517,6 +552,7 @@ var openUser = function() {
         newButton.addEventListener("click", function(){
             currentUser = newButton.getAttribute("data-tag")
             console.log(currentUser + ": Changed to User")
+            console.log(Users[1])
         })
         userModal.appendChild(newButton)
     }
