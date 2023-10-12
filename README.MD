@@ -18,7 +18,7 @@ Please navigate to this webpage: https://shawncrook411.github.io/Mindful_Meals/
 
 ## Usage
 
-After entering the application, you will be given an option to customize your user profile. After that, you will be provided with the main page of the application. At the top you will be able to see the title of our appllication on the left and on the right you will see your user logo that is a button that will bring up your user configuration page.
+After entering the application, you will be given an option to customize your user profile. After that, you will be provided with the main page of the application. At the top you will be able to see the title of our appllication on the left. On the right you will see your user logo that is a button that will bring up your user configuration page.
 
 Below that, you will see a search bar that will allow the user to enter custom keywords for the meal search. To the right of that, you will see all of the custom user biometric information. on the far left, you will be able to add and view filters that have been added to the users search criteria.
 
@@ -31,10 +31,10 @@ Due to time and financial constraints, this project will not have any link to su
 ## Roadmap
 
 As of now our future roadmap goals are:
--User-defined search function
+-User-defined search function *achieved
 -Favorites search function
 -Clickable cards with links to their source
--make her purddy
+-Make it pretty ~in progress
 
 ## Authors and acknowledgment
 
@@ -60,7 +60,7 @@ Thank you for allowing us to use your api and supplying such detailed documentat
 
 ## License
 
-Licensed with MIT
+Unsure
 
 ## Project status
 
