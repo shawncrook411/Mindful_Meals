@@ -36,12 +36,38 @@ var getDiet = function (currentUser) {
         })
         .then(function (data) {
         console.log("getDiet works")
-        console.log(data)
         calories = data.data.goals["maintain weight"]
         return calories;        
         })
 }
 
+var getMacros = function (currentUser) {
+    let MacrosURL = 'https://fitness-calculator.p.rapidapi.com/macrocalculator'
+    let localURL = MacrosURL + '?goal=maintain' + '&age=' + currentUser.age + '&gender=' + currentUser.gender + '&height=' + currentUser.height + '&weight=' + currentUser.weight + '&activitylevel=' + (currentUser.activitylevel.replace("level_", ""))
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'a545dc7272msh5310c0b3bc93c07p135ef8jsne5be6ed602b9',
+            'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+        }    
+    };
+    
+    return fetch(localURL, options)
+        .then(function (response) {
+        return response.json();
+        })
+        .then(function (data) {
+        console.log("getMacros works")
+        let macrosReturn = {       
+            carbs : data.data.balanced["carbs"],
+            fat : data.data.balanced["fat"],
+            protein : data.data.balanced["protein"]
+        }
+        console.log(macrosReturn + "getMacros")
+        return macrosReturn       
+    }) 
+}
 
 let input = [];
 let returnValue = [];
@@ -167,9 +193,15 @@ var submitInfo = function (event) {
         let newUserCalorie = getDiet(newUser)
         newUser.calories = newUserCalorie
         
-        Users.push(newUser)
+        setMacros = function () {(async ()=>{
+            var testing = await getMacros(DefaultUser)
+            newUser.carbs = testing.carbs
+            newUser.fat = testing.fat
+            newUser.protein = testing.protein
+        })()}         
+        setMacros()      
 
-        console.log(Users)
+        Users.push(newUser)
 
         for (let i = 0; i < 5; i++)
         {
@@ -211,7 +243,6 @@ var refreshModal = function () {
         input[i].value = ''
     }    
    
-    console.log(Users)
     input[0].placeholder = "Name:"
     input[1].placeholder = "Age: (0-80)"
     input[2].placeholder = "Height: (130-230cm)"
@@ -329,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
         loadFavoriteRecipe();
-    
     
     // function to search the recipes
     function searchRecipes() {
@@ -486,7 +516,7 @@ var openUser = function() {
         newButton.textContent = Users[i].userName
         newButton.addEventListener("click", function(){
             currentUser = newButton.getAttribute("data-tag")
-            console.log(currentUser)
+            console.log(currentUser + ": Changed to User")
         })
         userModal.appendChild(newButton)
     }
@@ -495,3 +525,5 @@ var openUser = function() {
 userModal = document.getElementById("usersModal")
 userIcon = document.getElementById("userIcon")
 userIcon.addEventListener("click", openUser)
+
+
